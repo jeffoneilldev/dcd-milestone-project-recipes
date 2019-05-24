@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        {% block content %}
-        {% endblock %}
-    </body>
+
+<head>
+    <!--link to Materialize for styling and icons etc-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+</head>
+
+<body>
+    {% block content %} {% endblock %}
+    <!--to initialize materialize, I need to load jQuery here-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!--calling the function for my collapsible effect-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.collapsible').collapsible();
+        });
+    </script>
+</body>
+
 </html>
