@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2>Add Your Own Recipe</h2>
+
+<!--putting in a form for the user to enter their own recipe-->
+<div class="row">
+    <form action="" method="POST" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">local_dining</i>
+          <input id="recipe_name" name="recipe_name" type="text" class="validate">
+          <label for="icon_prefix">Recipe Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">accessibility</i>
+          <input id="suitable_for" name="suitable_for" type="text" class="validate">
+          <label for="icon_prefix">Suitable For</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">flag</i>
+          <input id="cuisine" name="cuisine" type="text" class="validate">
+          <label for="icon_prefix">Cuisine</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="author" name="author" type="text" class="validate">
+          <label for="icon_prefix">Author Name</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <textarea name="ingredients" id="ingredients" class="materialize-textarea"></textarea>
+          <label for="icon_prefix">Ingredients</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <textarea name="procedure" id="procedure" class="materialize-textarea"></textarea>
+          <label for="icon_prefix">Procedure</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+{% endblock %}
