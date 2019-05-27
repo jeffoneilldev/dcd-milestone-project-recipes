@@ -10,10 +10,11 @@
                 </div>
             </div>
             <div class="collapsible-body">
-                <h6>
-                    {{recipe.cuisine}} dish prepared by {{recipe.author}}
-                </h6><br>
-                <h6>Ingredients</h6>
+                <div class="recipe_header col s9">
+                <strong>
+                    {{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong>
+                    <a href='{{url_for('edit_recipe', recipe_id=recipe._id)}}' class="waves-effect waves-light btn btn_small green col s3">Edit</a><br>
+                 <h6>Ingredients</h6>
                 <span>
                     {{recipe.ingredients}}
                 </span><br><br>
@@ -21,6 +22,7 @@
                 <span>
                     {{recipe.procedure}}
                 </span>
+            </div>
             </div>
         </li>
     

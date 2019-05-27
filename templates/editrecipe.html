@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2>Edit Recipe</h2>
+
+<!--a form for the user to edit a recipe-->
+<div class="row">
+    <form action="{{ url_for('update_recipe') }}" method="POST" class="col s12">
+        <!--the first row asks the user to select either vegetarian or meat eater, these options come dynamically from mongo-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">accessibility</i>
+                <select id="searchrecipes" name="suitable_for">
+              <option value="" disabled selected>Choose your option</option>
+                {% for search in search_recipes %}
+                  <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
+                {% endfor %}
+            </select>
+                <label>Suitable for</label>
+            </div>
+        </div>
+        
+        <!--here are the input fields for the user to enter their information-->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">local_dining</i>
+                <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                <label for="icon_prefix">Recipe Name</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">flag</i>
+                <input id="cuisine" name="cuisine" type="text" class="validate">
+                <label for="icon_prefix">Cuisine</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="author" name="author" type="text" class="validate">
+                <label for="icon_prefix">Author Name</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">restaurant</i>
+                <textarea name="ingredients" id="ingredients" class="materialize-textarea"></textarea>
+                <label for="icon_prefix">Ingredients</label>
+            </div>
+            <div class="input-field col s12">
+                <i class="material-icons prefix">build</i>
+                <textarea name="procedure" id="procedure" class="materialize-textarea"></textarea>
+                <label for="icon_prefix">Procedure</label>
+            </div>
+        </div>
+        
+        <!--edit recipe button-->
+        <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Edit Recipe
+          <!--<i class="material-icons right">send</i>-->
+      </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
