@@ -10,6 +10,17 @@ app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@myfirstcluster-xc4tx.mong
 mongo = PyMongo(app)
 
 @app.route('/')
+
+
+@app.route('/recipe_home')
+def recipe_home():
+    return render_template("home.html", recipe=mongo.db.recipe.find())
+    
+@app.route('/find_recipe')
+def find_recipe():
+    return render_template("searchrecipes.html", recipe=mongo.db.recipe.find())
+
+
 @app.route('/get_recipe')
 def get_recipe():
     return render_template("recipe.html", recipe=mongo.db.recipe.find())

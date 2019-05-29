@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <h1>My Kitchen Recipes</h1>
+    <div class="row col s12">
+                <div class="all_recipes col s12">
+                    <!--this brings the user to the recipes page-->
+                <a href="{{url_for('get_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">All Recipes</a>
+            </div>
+        </div><br>
+        
+                <div class="row col s12">
+                   <div class="search_recipes col s12">
+                            <!--this allows the user to search recipes according to either vegetarian or meat eaters-->
+                      <a href="{{url_for('find_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Search Recipes</a>
+                    </div>
+                </div><br>
+        
+        <div class="row col s12">
+            <div class="add_your_own_recipe col s12">
+                    <!--this brings the user to the addrecipe page-->
+                <a href="{{url_for('add_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Add Recipe</a>
+            </div>
+        </div>
+</div>
+
+
+{% endblock %}
