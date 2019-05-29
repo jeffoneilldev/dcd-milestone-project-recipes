@@ -4,53 +4,59 @@
 
 <!--a form for the user to edit a recipe-->
 <div class="row">
-    <form action="{{ url_for('update_recipe') }}" method="POST" class="col s12">
+    <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
         <!--the first row asks the user to select either vegetarian or meat eater, these options come dynamically from mongo-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">accessibility</i>
-                <select id="searchrecipes" name="suitable_for">
-              <option value="" disabled selected>Choose your option</option>
-                {% for search in search_recipes %}
-                  <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
-                {% endfor %}
-            </select>
+                 <select id="searchrecipes" name="suitable_for">
+                   <option value="" disabled selected>Choose your option</option>
+                   
+                   <!--to populate the edit recipe form with selected recipe-->
+                   {% for search in search_recipes %}
+                      {% if search.suitable_for == recipe.suitable_for %}
+                        <option value="{{search.suitable_for}}" selected >{{search.suitable_for}}</option>
+                      {% else %}
+                        <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
+                      {% endif %}
+                    {% endfor %}
+                 </select>
                 <label>Suitable for</label>
             </div>
         </div>
         
-        <!--here are the input fields for the user to enter their information-->
+        <!--here are the populated input fields for the user to edit the information-->
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">local_dining</i>
-                <input id="recipe_name" name="recipe_name" type="text" class="validate">
+                <input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
                 <label for="icon_prefix">Recipe Name</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">flag</i>
-                <input id="cuisine" name="cuisine" type="text" class="validate">
+                <input id="cuisine" name="cuisine" type="text" class="validate" value="{{recipe.cuisine}}">
                 <label for="icon_prefix">Cuisine</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="author" name="author" type="text" class="validate">
+                <input id="author" name="author" type="text" class="validate" value="{{recipe.author}}">
                 <label for="icon_prefix">Author Name</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">restaurant</i>
-                <textarea name="ingredients" id="ingredients" class="materialize-textarea"></textarea>
+                <textarea name="ingredients" id="ingredients" class="materialize-textarea">{{recipe.ingredients}}</textarea>
                 <label for="icon_prefix">Ingredients</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">build</i>
-                <textarea name="procedure" id="procedure" class="materialize-textarea"></textarea>
+                <textarea name="procedure" id="procedure" class="materialize-textarea">{{recipe.procedure}}</textarea>
                 <label for="icon_prefix">Procedure</label>
             </div>
         </div>
         
-        <!--edit recipe button-->
+        <!--done editing recipe button-->
         <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Edit Recipe
+            <button class="btn waves-effect waves-light" type="submit" name="action">Done
           <!--<i class="material-icons right">send</i>-->
       </button>
         </div>

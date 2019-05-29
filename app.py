@@ -27,10 +27,11 @@ def update_recipe():
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
-    the_recipe =  mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    the_recipe =  mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     all_searches =  mongo.db.search_recipes.find()
-    return render_template('editrecipe.html', recipe=the_recipe,
-                           search_recipes=all_searches)
+    return render_template('editrecipe.html', recipe = the_recipe,
+                           search_recipes = all_searches)
+
 
 
 if __name__ == '__main__':

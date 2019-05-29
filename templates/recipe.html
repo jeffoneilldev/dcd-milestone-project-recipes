@@ -1,33 +1,38 @@
-{% extends 'base.html' %} {% block content %} 
-    
-    <ul class="collapsible" data-collapsible="accordion">
-        {% for recipe in recipe %}
-        <li>
-            <div class="collapsible-header">
-                <div class="recipe_header">
-                    <!--this returns the recipe name and details about each one from the database-->
-                    <i class="material-icons">expand_more</i><strong>{{recipe.recipe_name}}</strong> - {{recipe.suitable_for}}
+{% extends 'base.html' %} {% block content %}
+
+<ul class="collapsible" data-collapsible="accordion">
+    {% for recipe in recipe %}
+    <li>
+        <div class="collapsible-header">
+            <div class="recipe_header">
+                <!--this returns the recipe name and details about each one from the database-->
+                <i class="material-icons">expand_more</i><strong>{{recipe.recipe_name}}</strong> - {{recipe.suitable_for}}
+            </div>
+        </div>
+        <!--when dropped down, this will display the info I want from the database for each recipe available-->
+        <div class="collapsible-body">
+            <div class="recipe_header col s9">
+                <strong>{{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong>
+
+                <div class="col s3">
+                    <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Edit</a><br>
+                </div>
+                <h6>Ingredients</h6>
+                <div class="col s9">
+                    {{recipe.ingredients}}
+                </div><br><br>
+
+
+                <h6>Procedure</h6>
+                <div class="col s9">
+                    {{recipe.procedure}}
                 </div>
             </div>
-            <div class="collapsible-body">
-                <div class="recipe_header col s9">
-                <strong>
-                    {{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong>
-                    <a href='{{url_for('edit_recipe', recipe_id=recipe._id)}}' class="waves-effect waves-light btn btn_small green col s3">Edit</a><br>
-                 <h6>Ingredients</h6>
-                <span>
-                    {{recipe.ingredients}}
-                </span><br><br>
-                <h6>Procedure</h6>
-                <span>
-                    {{recipe.procedure}}
-                </span>
-            </div>
-            </div>
-        </li>
-    
-        {% endfor %}
-    
-    </ul>
-    
+        </div>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
 {% endblock %}
