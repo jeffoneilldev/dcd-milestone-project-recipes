@@ -12,11 +12,12 @@
         <!--when dropped down, this will display the info I want from the database for each recipe available-->
         <div class="collapsible-body">
             <div class="recipe_header col s9">
-                <strong>{{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong>
+                <strong>{{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong><br><br>
 
                 <div class="col s3">
-                    <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Edit</a><br>
-                </div>
+                    <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Edit</a>
+                    <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn del_btn_small red col s3">Delete</a><br>
+                </div><br>
                 <h6>Ingredients</h6>
                 <div class="col s9">
                     {{recipe.ingredients}}

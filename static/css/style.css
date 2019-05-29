@@ -1,7 +1,14 @@
 
 .btn_small {
     height: 24px;
-    width: 60px;
+    width: 120px;
+    line-height: 24px;
+    margin: 5px 5px;
+}
+
+.del_btn_small {
+    height: 24px;
+    width: 120px;
     line-height: 24px;
     margin: 5px 5px;
 
