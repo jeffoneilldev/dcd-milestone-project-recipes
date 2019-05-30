@@ -1,9 +1,20 @@
 
+.container {
+    height: 80%;
+    width: 100%;
+}
+
+.navigation_buttons {
+    margin: 10%;
+    padding: 20px;
+}
+
 .btn_small {
     height: 24px;
     width: 120px;
     line-height: 24px;
     margin: 5px 5px;
+
 }
 
 .del_btn_small {
@@ -11,9 +22,5 @@
     width: 120px;
     line-height: 24px;
     margin: 5px 5px;
-
 }
 
-.recipe_header {
-    margin-top: 5px;
-}
