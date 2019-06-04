@@ -4,9 +4,27 @@
     width: 100%;
 }
 
+.homemenu {
+    align-content: center;
+}
+
 .navigation_buttons {
-    margin: 10%;
+    width: 300px;
+    line-height: 100px;
+    margin: 20px 20px;
+}
+
+.nav-wrapper {
+ /*   margin-left: 20px;
+    margin-right: 20px; */
+}
+
+.dropdown-trigger {
     padding: 20px;
+}
+
+.dropdown-content {
+    width: 200px;
 }
 
 .btn_small {

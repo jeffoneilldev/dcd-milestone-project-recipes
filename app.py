@@ -18,8 +18,24 @@ def recipe_home():
     
 @app.route('/find_recipe')
 def find_recipe():
-    return render_template("searchrecipes.html", recipe=mongo.db.recipe.find())
+    return render_template("searchrecipe.html", recipe=mongo.db.recipe.find())
 
+@app.route('/recipe_meateater')
+def recipe_meateater():
+    return render_template("meateater.html", recipe=mongo.db.recipe.find())
+
+@app.route('/recipe_vegetarian')
+def recipe_vegetarian():
+    return render_template("vegetarian.html", recipe=mongo.db.recipe.find())
+    
+@app.route('/recipe_cuisine')
+def recipe_cuisine():
+    return render_template("cuisine.html", recipe=mongo.db.recipe.find())
+
+@app.route('/recipe_author')
+def recipe_author():
+    return render_template("author.html", recipe=mongo.db.recipe.find())
+    
 
 @app.route('/get_recipe')
 def get_recipe():
