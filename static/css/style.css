@@ -27,6 +27,14 @@
     width: 200px;
 }
 
+/*.dropdown2 {
+    display: block;
+}*/
+
+.vegetarian {
+    text-align: left;
+}
+
 .btn_small {
     height: 24px;
     width: 120px;

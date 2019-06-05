@@ -28,14 +28,31 @@ def recipe_meateater():
 def recipe_vegetarian():
     return render_template("vegetarian.html", recipe=mongo.db.recipe.find())
     
-@app.route('/recipe_cuisine')
-def recipe_cuisine():
-    return render_template("cuisine.html", recipe=mongo.db.recipe.find())
+@app.route('/recipe_irish')
+def recipe_irish():
+    return render_template("irish.html", recipe=mongo.db.recipe.find())
 
-@app.route('/recipe_author')
-def recipe_author():
-    return render_template("author.html", recipe=mongo.db.recipe.find())
+@app.route('/recipe_italian')
+def recipe_italian():
+    return render_template("italian.html", recipe=mongo.db.recipe.find())
     
+@app.route('/recipe_chinese')
+def recipe_chinese():
+    return render_template("chinese.html", recipe=mongo.db.recipe.find())
+
+@app.route('/recipe_kittyogrady')
+def recipe_kittyogrady():
+    return render_template("kittyogrady.html", recipe=mongo.db.recipe.find())
+    
+@app.route('/recipe_kimsang')
+def recipe_kimsang():
+    return render_template("kimsang.html", recipe=mongo.db.recipe.find())
+    
+@app.route('/recipe_paolodicanio')
+def recipe_paolodicanio():
+    return render_template("paolodicanio.html", recipe=mongo.db.recipe.find())
+    
+
 
 @app.route('/get_recipe')
 def get_recipe():

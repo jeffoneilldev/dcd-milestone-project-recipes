@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+<h5>Recipes by Kim Sang</h5>
+
+
+
+<div class = "row">
+    <a href="{{url_for('add_recipe')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons right">add</i></a>
+    <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
+</div>
+
+{% endblock %}
