@@ -4,6 +4,11 @@
     width: 100%;
 }
 
+/*.header_image {
+    max-height: 20%;
+    max-width: 100%;
+}*/
+
 .homemenu {
     align-content: center;
 }
@@ -32,6 +37,10 @@
 }*/
 
 .vegetarian {
+    text-align: left;
+}
+
+.meateaters {
     text-align: left;
 }
 

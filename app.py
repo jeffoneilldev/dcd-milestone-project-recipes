@@ -22,35 +22,36 @@ def find_recipe():
 
 @app.route('/recipe_meateater')
 def recipe_meateater():
-    return render_template("meateater.html", recipe=mongo.db.recipe.find())
+    return render_template("meateater.html", meateaters=mongo.db.meateaters.find())
 
 @app.route('/recipe_vegetarian')
 def recipe_vegetarian():
-    return render_template("vegetarian.html", recipe=mongo.db.recipe.find())
+    return render_template("vegetarian.html", vegetarian=mongo.db.vegetarian.find())
     
 @app.route('/recipe_irish')
 def recipe_irish():
-    return render_template("irish.html", recipe=mongo.db.recipe.find())
+    return render_template("irish.html", irish=mongo.db.irish.find())
 
 @app.route('/recipe_italian')
 def recipe_italian():
-    return render_template("italian.html", recipe=mongo.db.recipe.find())
+    return render_template("italian.html", italian=mongo.db.italian.find())
     
 @app.route('/recipe_chinese')
 def recipe_chinese():
-    return render_template("chinese.html", recipe=mongo.db.recipe.find())
+    return render_template("chinese.html", chinese=mongo.db.chinese.find())
+
 
 @app.route('/recipe_kittyogrady')
 def recipe_kittyogrady():
-    return render_template("kittyogrady.html", recipe=mongo.db.recipe.find())
+    return render_template("kittyogrady.html", kittyogrady=mongo.db.kittyogrady.find())
     
 @app.route('/recipe_kimsang')
 def recipe_kimsang():
-    return render_template("kimsang.html", recipe=mongo.db.recipe.find())
+    return render_template("kimsang.html", kimsang=mongo.db.kimsang.find())
     
 @app.route('/recipe_paolodicanio')
 def recipe_paolodicanio():
-    return render_template("paolodicanio.html", recipe=mongo.db.recipe.find())
+    return render_template("paolodicanio.html", paolodicanio=mongo.db.paolodicanio.find())
     
 
 
