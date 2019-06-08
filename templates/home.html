@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="row">
-    <div class="navigation_buttons col s12">
+    <div class="navigation_buttons">
                 <div class="all_recipes">
                     <!--this brings the user to the recipes page-->
                 <a href="{{url_for('get_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">All Recipes</a>
@@ -10,7 +10,7 @@
 </div>
 
 <div class="row">
-        <div class="navigation_buttons col s12">
+        <div class="navigation_buttons">
             <div class="add_your_own_recipe">
                     <!--this brings the user to the addrecipe page-->
                 <a href="{{url_for('add_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn blue col s12">Add Recipe</a>
@@ -20,7 +20,7 @@
  
 <!--trying this as a button for searching-->
 <div class="row">
-        <div class="navigation_buttons col s12">
+        <div class="navigation_buttons">
             <div class="searchrecipes">
                 <ul class="collapsible">
                                            <li>

@@ -1,23 +1,15 @@
 
 .container {
+    background-color: yellow;
     height: 80%;
     width: 100%;
 }
-
-/*.header_image {
-    max-height: 20%;
-    max-width: 100%;
-}*/
 
 .homemenu {
     align-content: center;
 }
 
-.navigation_buttons {
-    width: 300px;
-    line-height: 100px;
-    margin: 20px 20px;
-}
+
 
 .nav-wrapper {
  /*   margin-left: 20px;
@@ -59,3 +51,40 @@
     margin: 5px 5px;
 }
 
+.searchrecipes {
+    margin: auto;
+}
+
+/*media queries for responsive actions */
+
+@media (max-width: 767px) {
+ .navigation_buttons {
+    width: 80%;
+    line-height: 100px;
+    margin: auto;
+    padding: 20px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+ .navigation_buttons {
+    width: 80%;
+    line-height: 100px;
+    margin: auto;
+    padding: 20px;
+}
+}
+
+@media (min-width: 992px) {
+ .header_image {
+    height: 10%;
+    width: 50%;
+    margin: auto;
+}
+ .navigation_buttons {
+    width: 30%;
+    line-height: 100px;
+    margin: auto;
+    padding: 20px;
+}
+}
