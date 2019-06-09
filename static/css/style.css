@@ -1,6 +1,6 @@
 
 .container {
-    background-color: yellow;
+    background-color: GhostWhite;
     height: 80%;
     width: 100%;
 }
@@ -9,11 +9,8 @@
     align-content: center;
 }
 
-
-
-.nav-wrapper {
- /*   margin-left: 20px;
-    margin-right: 20px; */
+.collapsible-header {
+    display: block;
 }
 
 .dropdown-trigger {
@@ -24,9 +21,6 @@
     width: 200px;
 }
 
-/*.dropdown2 {
-    display: block;
-}*/
 
 .vegetarian {
     text-align: left;
@@ -35,6 +29,8 @@
 .meateaters {
     text-align: left;
 }
+
+
 
 .btn_small {
     height: 24px;
@@ -73,6 +69,11 @@
     margin: auto;
     padding: 20px;
 }
+ .recipe_image {
+    height: 10%;
+    width: 50%;
+    margin: auto;
+}
 }
 
 @media (min-width: 992px) {
@@ -86,5 +87,10 @@
     line-height: 100px;
     margin: auto;
     padding: 20px;
+}
+ .recipe_image {
+    height: 10%;
+    width: 50%;
+    margin: auto;
 }
 }
