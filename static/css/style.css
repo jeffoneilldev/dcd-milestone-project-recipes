@@ -77,11 +77,18 @@
 }
 
 @media (min-width: 992px) {
- .header_image {
+ .footer_image {
     height: 10%;
     width: 50%;
     margin: auto;
 }
+
+.header_image {
+    height: 10%;
+    width: 50%;
+    margin: auto;
+}
+
  .navigation_buttons {
     width: 30%;
     line-height: 100px;
