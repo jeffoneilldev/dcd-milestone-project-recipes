@@ -54,7 +54,6 @@ def recipe_paolodicanio():
     return render_template("paolodicanio.html", paolodicanio=mongo.db.paolodicanio.find())
     
 
-
 @app.route('/get_recipe')
 def get_recipe():
     return render_template("recipe.html", recipe=mongo.db.recipe.find())

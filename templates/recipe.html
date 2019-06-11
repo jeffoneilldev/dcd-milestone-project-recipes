@@ -9,24 +9,27 @@
                 <i class="material-icons">expand_more</i><strong>{{recipe.recipe_name}}</strong> - {{recipe.suitable_for}}
             </div>
         </div>
+        
         <!--when dropped down, this will display the info I want from the database for each recipe available-->
         <div class="collapsible-body">
             <div class="recipe_header col s9">
                 <strong>{{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong><br><br>
 
+                <!--here are my edit and delete buttons, both are wired up to app.py-->
                 <div class="col s3">
                     <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Edit</a>
                     <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn del_btn_small red col s3">Delete</a><br>
                 </div><br>
-                <h6>Ingredients</h6>
-                <div class="col s9">
-                    {{recipe.ingredients}}
-                </div><br><br>
+
+                    <h6>Ingredients</h6>
+                    <div class="col s9">
+                        {{recipe.ingredients}}
+                    </div><br><br>
 
                 <div class="recipe_image col s12">
-                    <img src="{{recipe.image}}" style="max-width:100%;max-height:10%;">
+                    <img src="{{recipe.image}}" alt="image of prepared dish" style="max-width:100%;max-height:10%;">
                 </div><br>
-         
+
                 <h6>Procedure</h6>
                 <div class="col s9">
                     {{recipe.procedure}}
@@ -38,7 +41,9 @@
     {% endfor %}
 
 </ul>
-<div class = "row">
+
+<!--here are my add recipe and home buttons, they are linked to their relevant pages-->
+<div class="row">
     <a href="{{url_for('add_recipe')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons right">add</i></a>
     <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
 </div>

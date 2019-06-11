@@ -3,7 +3,7 @@ For my DCD Milestone Project, I am creating an application to access recipes cal
 The app will retrieve data from a database when prompted by the user. The information will then be displayed to the user.
 
 ## UX
-A typical user of this app would be looking for the following. 
+A typical user of this app would be looking for the following: 
 
 1. An easy to follow user interface that is not too complicated.  
 2. Immediately know the options available to them.  
@@ -11,7 +11,6 @@ A typical user of this app would be looking for the following.
 4. Be able to add their own recipe to the app (ie Add Recipe).  
 5. Search the app for a recipe according to their preferred selections (ie Search recipes).
 
-To  
 The mock-up I used for planning the application is a file in my project under the name recipesMockUp.jpeg
 
 In the top section I have put the heading and a relevant image associated with recipes.  The middle section has the three options for the user and they are clearly defined and recognisable. 
@@ -39,9 +38,8 @@ Bootstrap (getbootstrap.com): For the Grid System and buttons across the site.
 ## Testing
 As per my primary targets above:
 
-1. A regular user
-2. A new user
-
+1. A regular user can easily access any recipe from the database through this app.
+2. A new user can navigate the page easily because of the simple layout and obvious options available.
 
 Other Testing...
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <!--link to Materialize & css file for styling and icons etc-->
+    <!--link to Materialize & css file for styling, accordion and icons etc-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
@@ -10,32 +10,33 @@
 </head>
 
 <body>
-    <div class = "header_image row col s12">
-        
-           <img src = "static/images/header_pic.jpg" width = 100% height = 20%>
-        
+    <!--header image-->
+    <div class="header_image row col s12">
+        <img src="static/images/header_pic.jpg" alt="recipe header" width= 100% height= 20%>
     </div>
+
     <div class="container">
         {% block content %} {% endblock %}
     </div>
-    
-    <footer class = "container-fluid">
-        <div class = "footer_image row col 12">
-          <img src = "static/images/footerimage.jpg" width = 100% height = 20%>
+
+    <!--footer image-->
+    <footer class="container-fluid">
+        <div class="footer_image row col 12">
+            <img src="static/images/footerimage.jpg" alt="recipe footer" width= 100% height= 20%>
         </div>
     </footer>
-    
+
     <!--to initialize materialize, I need to load jQuery here-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!--calling the functions for my collapsible effect and my dynamic forms-->
+    <!--calling the functions for my collapsible effect, my dynamic forms and dropdown-->
     <script type="text/javascript">
         $(document).ready(function() {
             $('.collapsible').collapsible();
             $('select').formSelect();
             $(".dropdown-trigger").dropdown();
-            
+
         });
     </script>
 </body>

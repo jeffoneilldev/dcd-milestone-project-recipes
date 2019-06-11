@@ -4,7 +4,7 @@
 
 <ul class="collapsible" data-collapsible="accordion">
     {% for meateaters in meateaters %}
-    
+
     <li>
         <div class="collapsible-header">
             <div class="recipe_header">
@@ -27,7 +27,7 @@
                 </div><br><br>
 
                 <div class="recipe_image col s12">
-                    <img src="{{meateaters.image}}" style="max-width:100%;max-height:10%;">
+                    <img src="{{meateaters.image}}" alt="image of prepared dish" style="max-width:100%;max-height:10%;">
                 </div><br>
 
                 <h6>Procedure</h6>
@@ -41,7 +41,7 @@
     {% endfor %}
 
 </ul>
-<div class = "row">
+<div class="row">
     <a href="{{url_for('add_recipe')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons right">add</i></a>
     <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
 </div>

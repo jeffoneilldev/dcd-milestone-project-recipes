@@ -2,7 +2,7 @@
 
 <h2>Add Recipe</h2>
 
-<!--putting in a form for the user to enter their own recipe-->
+<!--a form for the user to enter their own recipe-->
 <div class="row">
   <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
     <!--the first row asks the user to select either vegetarian or meat eater, these options come dynamically from mongo-->
@@ -18,7 +18,7 @@
         <label>Suitable for</label>
       </div>
     </div>
-    
+
     <!--here are the input fields for the user to enter their information-->
     <div class="row">
       <div class="input-field col s12">
@@ -47,8 +47,8 @@
         <label for="icon_prefix">Procedure</label>
       </div>
     </div>
-    
-    <!--add recipe button-->
+
+    <!--add recipe confirmation button and home button-->
     <div class="row">
       <button class="btn-floating btn-large waves-effect waves-light green" type="submit" name="action"><i class="material-icons">check</i>
       </button>

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">accessibility</i>
-                 <select id="searchrecipes" name="suitable_for">
+                <select id="searchrecipes" name="suitable_for">
                    <option value="" disabled selected>Choose your option</option>
                    
                    <!--to populate the edit recipe form with selected recipe-->
@@ -24,7 +24,7 @@
                 <label>Suitable for</label>
             </div>
         </div>
-        
+
         <!--here are the populated input fields for the user to edit the information-->
         <div class="row">
             <div class="input-field col s12">
@@ -53,8 +53,8 @@
                 <label for="icon_prefix">Procedure</label>
             </div>
         </div>
-        
-        <!--done editing recipe button-->
+
+        <!--done editing recipe button and home button-->
         <div class="row">
             <button class="btn-floating btn-large waves-effect waves-light green" type="submit" name="action"><i class="material-icons right">check</i></button>
             <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
