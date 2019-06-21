@@ -21,19 +21,20 @@ This layout is fully responsive on mobile, medium and large screens.
 
 ## Features
 ### Existing Features
-- All Recipes: Allows the user to browse all the recipes available on the app. When a recipe is selected, full details are revealed with an option to edit or delete the selected recipe. An image of the dish is also displayed.
+- All Recipes: Allows the user to browse all the recipes available on the app. Each recipe's name is followed by either vegetarian or meateater. When a recipe is selected, full details (author, ingredients, image and procedure) are revealed with an option to edit or delete the selected recipe. If the user decides to "Edit" the recipe, then the user is brought to a pre-filled form where they can edit the details of the recipe. This edited version will be updated in the app. Also, if the user decided to "Delete" the recipe, the recipe will be deleted from the app.
 - Add Recipe: Allows the user to add their own recipe to the app by entering their details into a form and selecting the green tick. Next time they browse the recipes they will find their own recipe there also.
-- Search Recipes: Allows the user to search the recipe by various criteria like Vegetarian, Meat eaterss, Cuisine - Irish, Italian, Chinese, Author - 1, 2 and 3
+- Search Recipes: Allows the user to search the recipe by various criteria like Vegetarian, Meat eaterss, cuisine and author. When Cuisine is selected, another drop down menu appears with further choices (Irish, Italian, Chinese). Similarly when Author is selected, a drop down menu displays three further options (Kitty O'Shea, Paolo DiCanio, Kim Sang). When any of these extra options are selected, the user is brought to a page showing the reipes relevant to their selection.
 
 ### Features Left to Implement
 - a "likes" counter.
 - a working username/password to allow access to recipes
 
 ## Technologies Used
+Flask: a Python web framework for building this app.
 Materialize: Accordion effect on recipe descriptions;  collapsible headers
 Javascript: For interaction   
 Bootstrap (getbootstrap.com): For the Grid System and buttons across the site.
-
+MongoDB databases.
 
 ## Testing
 As per my primary targets above:
@@ -46,15 +47,13 @@ Other Testing...
 - HTML and CSS code was validated through the relevant validators.
 
 ## Deployment
-I deployed my project using Heroku. From my repository, I selected "Settings" and scrolled down to Github Pages. I clicked on the "Source" drop-down menu and selected "Master Branch" then clicked "Save". 
-I then received the link to my website and copied it. I pasted the link into the top of my repository along with a short description of the project. I clicked on the link and did more testing of my site and 
-everything is working. Here is the live link to my "recipes" app 
+I deployed my project using Heroku...Here is the live link to my "recipes" app 
 ## Credits
 ### Content
 Recipe images from Google.
 
 ### Media
-Header and Footer images created by me on Affinity Designer Pro on Mac.
+Header and Footer images created by me using Affinity Designer Pro on Mac.
 
 ### Acknowledgements
 Code institute tutorials.  
