@@ -32,6 +32,18 @@
 
 /*edit and delete buttons styling*/
 
+.searchButton {
+    height: 24px;
+    width: 120px;
+    line-height: 24px;
+    margin: 5px 5px;
+    display: inline-block;
+}
+
+.recipe_name {
+    display: inline-block;
+}
+
 .btn_small {
     height: 24px;
     width: 120px;
