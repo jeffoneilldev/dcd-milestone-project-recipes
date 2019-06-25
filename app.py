@@ -11,15 +11,30 @@ mongo = PyMongo(app)
 
 @app.route('/')
 
+@app.route('/recipe_index')
+def recipe_index():
+    return render_template("index.html", recipe=mongo.db.recipe.find())
 
 @app.route('/recipe_home')
 def recipe_home():
     return render_template("home.html", recipe=mongo.db.recipe.find())
     
-@app.route('/find_recipe')
+@app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
-    return render_template("searchrecipe.html", recipe=mongo.db.recipe.find())
+    recipe_id = request.args.get('recipe_id')
+    if recipe_id=='vegetarian':
+          vegetarian=mongo.db.vegetarian.find()
+    if recipe_id=='meateaters':
+          meateaters=mongo.db.meateaters.find()
+    if recipe_id=='italian':
+          italian=mongo.db.italian.find()
+    if recipe_id=='irish':
+          irish=mongo.db.irish.find()
+    if recipe_id=='chinese':
+          chinese=mongo.db.chinese.find()
+    return render_template('searchrecipe.html', recipe_id=recipe_id)
 
+"""PUT THESE INTO ONE FIND RECIPE ABOVE
 @app.route('/recipe_meateater')
 def recipe_meateater():
     return render_template("meateater.html", meateaters=mongo.db.meateaters.find())
@@ -40,19 +55,8 @@ def recipe_italian():
 def recipe_chinese():
     return render_template("chinese.html", chinese=mongo.db.chinese.find())
 
+"""
 
-@app.route('/recipe_kittyogrady')
-def recipe_kittyogrady():
-    return render_template("kittyogrady.html", kittyogrady=mongo.db.kittyogrady.find())
-    
-@app.route('/recipe_kimsang')
-def recipe_kimsang():
-    return render_template("kimsang.html", kimsang=mongo.db.kimsang.find())
-    
-@app.route('/recipe_paolodicanio')
-def recipe_paolodicanio():
-    return render_template("paolodicanio.html", paolodicanio=mongo.db.paolodicanio.find())
-    
 
 @app.route('/get_recipe')
 def get_recipe():

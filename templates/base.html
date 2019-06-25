@@ -2,43 +2,104 @@
 <html>
 
 <head>
-    <!--link to Materialize & css file for styling, accordion and icons etc-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/clean-blog.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <!--header image-->
-    <div class="header_image row col s12">
-        <img src="static/images/dcd2.jpg" alt="recipe header" width= 100% height= 20%>
-    </div>
-
+    
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        {% block content %} {% endblock %}
+      <a class="navbar-brand" href="{{url_for('recipe_index')}}">Search Recipes</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('recipe_index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('get_recipe')}}">Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('add_recipe')}}">Add Recipe</a>
+          </li>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!--footer image-->
-    <footer class="container-fluid">
-        <div class="footer_image row col 12">
-            <img src="static/images/footer2.jpg" alt="recipe footer" width= 100% height= 20%>
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://www.theloop.ca/wp-content/uploads/2016/09/ingredients.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>World of Recipes</h1>
+            <span class="subheading">Enjoy our recipes or add your own!</span>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </header>
 
-    <!--to initialize materialize, I need to load jQuery here-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Main Content -->
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
 
-    <!--calling the functions for my collapsible effect, my dynamic forms and dropdown-->
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.collapsible').collapsible();
-            $('select').formSelect();
-            $(".dropdown-trigger").dropdown();
+  <hr>
 
-        });
-    </script>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{{url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{{url_for('static', filename='js/clean-blog.min.js')}}"></script>
+  
 </body>
 
 </html>

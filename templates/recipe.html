@@ -1,51 +1,85 @@
 {% extends 'base.html' %} {% block content %}
+<h1>Recipes</h1>
+<p>Click "View Recipe" to see the ingrediants and procedure.</p>
 
-<ul class="collapsible" data-collapsible="accordion">
+<ul>
     {% for recipe in recipe %}
-    <li>
-        <div class="collapsible-header">
-            <div class="recipe_header">
-                <!--this returns the recipe name and details about each one from the database-->
-                <i class="material-icons">expand_more</i><strong>{{recipe.recipe_name}}</strong> - {{recipe.suitable_for}}
-            </div>
+<!-- Page Content -->
+    <div class="container">
+
+      <!-- Recipe Heading -->
+      <h2 class="my-4">{{recipe.recipe_name}}
+        <small></small>
+      </h2>
+
+      <!-- Recipe info -->
+      <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="{{recipe.image}}" alt="image of prepared dish">
+          </a>
         </div>
-        
-        <!--when dropped down, this will display the info I want from the database for each recipe available-->
-        <div class="collapsible-body">
-            <div class="recipe_header col s9">
-                <strong>{{recipe.cuisine}} dish prepared by {{recipe.author}}  </strong><br><br>
-
-                <!--here are my edit and delete buttons, both are wired up to app.py-->
-                <div class="col s3">
-                    <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small green col s3">Edit</a>
-                    <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn del_btn_small red col s3">Delete</a><br>
-                </div><br>
-
-                    <h6>Ingredients</h6>
-                    <div class="col s9">
-                        {{recipe.ingredients}}
-                    </div><br><br>
-
-                <div class="recipe_image col s12">
-                    <img src="{{recipe.image}}" alt="image of prepared dish" style="max-width:100%;max-height:10%;">
-                </div><br>
-
+        <div class="col-md-12">
+          <p>{{recipe.cuisine}} dish prepared by {{recipe.author}}</p>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">View Recipe</button>
+              <br><br>
+              <div id="demo" class="collapse">
+                <h6>Ingredients</h6>
+                {{recipe.ingredients}}
+                  <hr>
                 <h6>Procedure</h6>
-                <div class="col s9">
-                    {{recipe.procedure}}
-                </div>
-            </div>
-        </div>
-    </li>
+                {{recipe.procedure}}
+                <br>
+<!--put Edit and Delete buttons here-->  
+<div class="row">
+    <button type="button" class="btn btn-warning" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</button>
+    <button type="button" class="btn btn-danger" href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete</button>  
+</div>
 
-    {% endfor %}
+                <hr>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <hr>
+      <hr>
+
+          {% endfor %}
 
 </ul>
 
-<!--here are my add recipe and home buttons, they are linked to their relevant pages-->
-<div class="row">
-    <a href="{{url_for('add_recipe')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons right">add</i></a>
-    <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
-</div>
+      <hr>
+
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+
+    </div>
+    <!-- /.container -->
+
+
+
+
 
 {% endblock %}

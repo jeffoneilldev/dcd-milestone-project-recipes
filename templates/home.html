@@ -1,110 +1,49 @@
 {% extends 'base.html' %} {% block content %}
 <br>
 
-<div class="row">
-    <div class="navigation_buttons">
-        <div class="all_recipes">
-            
-              <nav>
-                <div class="nav-wrapper">
-                  <form>
-                    <div class="input-field">
-                      <input id="search" type="search" placeholder="Enter Recipe Name" required>
-                      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    </div>
-                  </form>
-                </div>
-              </nav>
-        </div>
-    </div>
-</div>
+<!--adding navbar and sidebar for mobile here-->
 
+  <ul class="sidenav" id="mobile-menu">
+    <li><a href="{{url_for('get_recipe', recipe_id=recipe._id)}}">All Recipes</a></li>
+    <li><a href="{{url_for('add_recipe', recipe_id=recipe._id)}}">Add Recipe</a></li>
+    <li><a class="dropdown-trigger" href="#!" data-target="dropdown2">Search For Recipes<i class="material-icons right">arrow_drop_down</i></a></li>
+  </ul>
+  
+  <nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Recipes</a>
+    <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+        <li><a href="{{url_for('get_recipe', recipe_id=recipe._id)}}">All Recipes</a></li>
+        <li><a href="{{url_for('add_recipe', recipe_id=recipe._id)}}">Add Recipe</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Search For Recipes<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
 
-<div class="row">
-    <div class="navigation_buttons">
-        <div class="all_recipes">
-            <!--this brings the user to the recipes page-->
-            <a href="{{url_for('get_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">All Recipes</a>
-        </div>
-    </div>
-</div><br>
+<!--dropdown menu from search here-->
+<form action="{{url_for('find_recipe')}}" method="POST">
+  <ul id="dropdown1" class="dropdown-content">
+      <li><a href="{{url_for('find_recipe', recipe_id="vegetarian")}}">Vegetarian</a></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="meateaters")}}">Meat Dishes</a></li>
+      <li class="divider"></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="italian")}}">Italian</a></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="irish")}}">Irish</a></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="chinese")}}">Chinese</a></li>
+  </ul>
+</form>
 
-<!--this brings the user to the add recipe page-->
-<div class="row">
-    <div class="navigation_buttons">
-        <div class="add_your_own_recipe">
-            <!--this brings the user to the addrecipe page-->
-            <a href="{{url_for('add_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Add Recipe</a>
-        </div>
-    </div>
-</div><br>
+<form action="{{url_for('find_recipe')}}" method="POST">
+  <ul id="dropdown2" class="dropdown-content">
+      <li><a href="{{url_for('find_recipe', recipe_id="vegetarian")}}">Vegetarian</a></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="meateaters")}}">Meat Dishes</a></li>
+      <li class="divider"></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="italian")}}">Italian</a></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="irish")}}">Irish</a></li>
+      <li><a href="{{url_for('find_recipe', recipe_id="chinese")}}">Chinese</a></li>
+  </ul>
+</form>
 
-<!--when search recipes button is clicked, a dropdown menu gives the user further choices-->
-<div class="row">
-    <div class="navigation_buttons">
-        <div class="searchrecipes">
-            <ul class="collapsible">
-                <li>
-                    <div class="collapsible-header waves-effect waves-light btn black col s12">Search Recipes</div>
-                    <div class="collapsible-body">
-                        <ul class="collapsible">
+              
 
-                            <li>
-                                <div class="vegetarian">
-                                    <a href="{{url_for('recipe_vegetarian', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Vegetarian</a></div>
-                            </li>
-
-                            <li>
-                                <div class="meateaters">
-                                    <a href="{{url_for('recipe_meateater', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Meat Eater</a></div>
-                            </li>
-
-                            <li>
-
-                                <!--when cuisine and author are clicked, collapsible menus show further searching filters for the user-->
-                                <div class="collapsible-header waves-effect waves-light btn green col s12">Cuisine</div>
-                                <div class="collapsible-body">
-                                    <ul class="collapsible">
-                                        <li>
-                                            <div class="irish">
-                                                <a href="{{url_for('recipe_irish', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Irish</a></div>
-                                        </li>
-                                        <li>
-                                            <div class="italian">
-                                                <a href="{{url_for('recipe_italian', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Italian</a></div>
-                                        </li>
-                                        <li>
-                                            <div class="chinese">
-                                                <a href="{{url_for('recipe_chinese', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Chinese</a></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="collapsible-header waves-effect waves-light btn green col s12">Author</div>
-                                <div class="collapsible-body">
-                                    <ul class="collapsible">
-                                        <li>
-                                            <div class="kittyogrady">
-                                                <a href="{{url_for('recipe_kittyogrady', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Kitty O'Grady</a></div>
-                                        </li>
-                                        <li>
-                                            <div class="paolodicanio">
-                                                <a href="{{url_for('recipe_paolodicanio', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Paolo DiCanio</a></div>
-                                        </li>
-                                        <li>
-                                            <div class="kimsang">
-                                                <a href="{{url_for('recipe_kimsang', recipe_id=recipe._id)}}" class="waves-effect waves-light btn green col s12">Kim Sang</a></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </div>
-</div><br><br> {% endblock %}
+{% endblock %}
