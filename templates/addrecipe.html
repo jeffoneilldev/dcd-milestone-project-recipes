@@ -9,7 +9,7 @@
     <!--the first row asks the user to select either vegetarian or meat eater-->
     <div class="form-group">
       <select class="form-control" id="searchrecipes" placeholder="Suitable for">
-    <option value="" disabled selected>Choose your option</option>
+    <option value="" disabled selected>Vegatarian or Meaty?</option>
     {% for search in search_recipes %}
     <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
     {% endfor %}
@@ -18,28 +18,27 @@
 
     <!--here are the input fields for the user to enter their information-->
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="recipe_name" type="text" class="form-control" name="recipe_name" placeholder="Recipe Name">
     </div>
     <br>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
       <input id="cuisine" type="text" class="form-control" name="cuisine" placeholder="Cuisine">
     </div>
     <br>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="author" type="text" class="form-control" name="author" placeholder="Author">
     </div>
     <br>
     <div class="form-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <textarea class="form-control" rows="5" id="ingredients" name="ingredients" placeholder="Ingredients"></textarea>
     </div>
     <br>
     <div class="form-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <textarea class="form-control" rows="5" id="procedure" name="procedure" placeholder="Procedure"></textarea>
+    </div>
+    <br>
+    <div class="input-group">
+      <input id="image" type="text" class="form-control" name="image" placeholder="Image URL">
     </div>
     <br>
     <button type="submit" name="action" class="btn btn-success">Submit Recipe</button>

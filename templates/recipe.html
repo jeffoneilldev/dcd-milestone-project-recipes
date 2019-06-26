@@ -2,10 +2,10 @@
 <h1>Recipes</h1>
 <p>Click "View Recipe" to see the ingrediants and procedure.</p>
 
-<ul>
+<ul class="list-group">
     {% for recipe in recipe %}
 <!-- Page Content -->
-
+<li class="list-group-item">
     <div class="container">
 
       <!-- Recipe Heading -->
@@ -38,21 +38,26 @@
 
                 <hr>
         </div>
+        </div>
+        </div>
       </div>
       <!-- /.row -->
 
       <hr>
       <hr>
 
-          {% endfor %}
+</li>
+
+         {% endfor %} 
+         
 </ul>
 
 
       <hr>
 
       <!-- Pagination -->
-      <ul class="pagination justify-content-center">
-        <li class="page-item">
+<ul class="pagination justify-content-center">
+   <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
             <span class="sr-only">Previous</span>
@@ -72,10 +77,10 @@
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>
           </a>
-        </li>
-      </ul>
+  </li>
+</ul>
 
-    </div>
+   
     <!-- /.container -->
 
 

@@ -15,9 +15,7 @@ mongo = PyMongo(app)
 def recipe_index():
     return render_template("index.html", recipe=mongo.db.recipe.find())
 
-@app.route('/recipe_home')
-def recipe_home():
-    return render_template("home.html", recipe=mongo.db.recipe.find())
+
     
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
@@ -90,7 +88,8 @@ def update_recipe(recipe_id):
         'author': request.form.get('author'),
         'suitable_for': request.form.get('suitable_for'),
         'ingredients':request.form.get('ingredients'),
-        'procedure':request.form.get('procedure')
+        'procedure':request.form.get('procedure'),
+        'image':request.form.get('image')
     })
     return redirect(url_for('get_recipe'))
 

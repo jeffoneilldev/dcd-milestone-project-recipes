@@ -10,7 +10,7 @@
     <!--the first row is preselected vegetarian or meat eater-->
     <div class="form-group">
       <select class="form-control" id="searchrecipes" name="suitable_for" placeholder="Suitable for">
-    <option value="" disabled >Choose your option</option>
+    <option value="" disabled >Vegatarian or Meaty?</option>
     {% for search in search_recipes %}
     {% if search.suitable_for == recipe.suitable_for %}
     <option value="{{search.suitable_for}}" selected>{{search.suitable_for}}</option>
@@ -23,28 +23,26 @@
 
     <!--here are the input fields for the user to edit the information-->
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="recipe_name" type="text" class="form-control" name="recipe_name" value="{{recipe.recipe_name}}" placeholder="Recipe Name">
     </div>
     <br>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
       <input id="cuisine" type="text" class="form-control" name="cuisine" value="{{recipe.cuisine}}" placeholder="Cuisine">
     </div>
     <br>
     <div class="input-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <input id="author" type="text" class="form-control" name="author" value="{{recipe.author}}" placeholder="Author">
     </div>
     <br>
     <div class="form-group">
-      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
       <textarea id="ingredients" type="text" rows="5" class="form-control" name="ingredients" placeholder="Ingredients">{{recipe.ingredients}}</textarea>
     </div>
     <br>
     <div class="form-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
       <textarea id="procedure" type="text" rows="5" class="form-control" name="procedure" placeholder="Procedure">{{recipe.procedure}}</textarea>
+    </div>
+    <br>
+    <input id="image" type="text" class="form-control" name="image" value="{{recipe.image}}" placeholder="Image URL">
     </div>
     <br>
     <button type="submit" name="action" class="btn btn-success">Update Recipe</button>
