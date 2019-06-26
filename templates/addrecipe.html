@@ -1,60 +1,50 @@
 {% extends 'base.html' %} {% block content %}
 
 <h2>Add Recipe</h2>
-<p>Enter your recipe details and click "Submit" when you're done.</p>
+<p>Enter your recipe details and click the "Submit Recipe" button when you're done.</p>
+<br>
 <!--a form for the user to enter their own recipe-->
 <div class="row">
-  <form action="{{ url_for('insert_recipe') }}" method="POST" class="col s12">
-    <!--the first row asks the user to select either vegetarian or meat eater, these options come dynamically from mongo-->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">accessibility</i>
-        <select id="searchrecipes" name="suitable_for">
-              <option value="" disabled selected>Choose your option</option>
-                {% for search in search_recipes %}
-                  <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
-                {% endfor %}
-            </select>
-        <label>Suitable for</label>
-      </div>
+  <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-5">
+    <!--the first row asks the user to select either vegetarian or meat eater-->
+    <div class="form-group">
+      <select class="form-control" id="searchrecipes" placeholder="Suitable for">
+    <option value="" disabled selected>Choose your option</option>
+    {% for search in search_recipes %}
+    <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
+    {% endfor %}
+  </select>
     </div>
 
     <!--here are the input fields for the user to enter their information-->
-    <div class="row">
-      <div class="input-field col s12">
-        <i class="material-icons prefix">local_dining</i>
-        <input id="recipe_name" name="recipe_name" type="text" class="validate">
-        <label for="icon_prefix">Recipe Name</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">flag</i>
-        <input id="cuisine" name="cuisine" type="text" class="validate">
-        <label for="icon_prefix">Cuisine</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">account_circle</i>
-        <input id="author" name="author" type="text" class="validate">
-        <label for="icon_prefix">Author Name</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">restaurant</i>
-        <textarea name="ingredients" id="ingredients" class="materialize-textarea"></textarea>
-        <label for="icon_prefix">Ingredients</label>
-      </div>
-      <div class="input-field col s12">
-        <i class="material-icons prefix">build</i>
-        <textarea name="procedure" id="procedure" class="materialize-textarea"></textarea>
-        <label for="icon_prefix">Procedure</label>
-      </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="recipe_name" type="text" class="form-control" name="recipe_name" placeholder="Recipe Name">
     </div>
-
-    <!--add recipe confirmation button and home button-->
-    <div class="row">
-      <button class="btn-floating btn-large waves-effect waves-light green" type="submit" name="action"><i class="material-icons">check</i>
-      </button>
-      <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="cuisine" type="text" class="form-control" name="cuisine" placeholder="Cuisine">
     </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="author" type="text" class="form-control" name="author" placeholder="Author">
+    </div>
+    <br>
+    <div class="form-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <textarea class="form-control" rows="5" id="ingredients" name="ingredients" placeholder="Ingredients"></textarea>
+    </div>
+    <br>
+    <div class="form-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <textarea class="form-control" rows="5" id="procedure" name="procedure" placeholder="Procedure"></textarea>
+    </div>
+    <br>
+    <button type="submit" name="action" class="btn btn-success">Submit Recipe</button>
   </form>
+
 </div>
 
 {% endblock %}

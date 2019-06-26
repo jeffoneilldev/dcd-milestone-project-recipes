@@ -1,65 +1,55 @@
 {% extends 'base.html' %} {% block content %}
 
 <h2>Edit Recipe</h2>
+<p>Edit your recipe details and click the "Update Recipe" button when you're done.</p>
+<br>
 
-<!--a form for the user to edit a recipe-->
+<!--a form for the user to edit the recipe-->
 <div class="row">
-    <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col s12">
-        <!--the first row asks the user to select either vegetarian or meat eater, these options come dynamically from mongo-->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">accessibility</i>
-                <select id="searchrecipes" name="suitable_for">
-                   <option value="" disabled selected>Choose your option</option>
-                   
-                   <!--to populate the edit recipe form with selected recipe-->
-                   {% for search in search_recipes %}
-                      {% if search.suitable_for == recipe.suitable_for %}
-                        <option value="{{search.suitable_for}}" selected >{{search.suitable_for}}</option>
-                      {% else %}
-                        <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
-                      {% endif %}
-                    {% endfor %}
-                 </select>
-                <label>Suitable for</label>
-            </div>
-        </div>
+  <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col-md-5">
+    <!--the first row is preselected vegetarian or meat eater-->
+    <div class="form-group">
+      <select class="form-control" id="searchrecipes" name="suitable_for" placeholder="Suitable for">
+    <option value="" disabled >Choose your option</option>
+    {% for search in search_recipes %}
+    {% if search.suitable_for == recipe.suitable_for %}
+    <option value="{{search.suitable_for}}" selected>{{search.suitable_for}}</option>
+    {% else %}
+    <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
+    {% endif %}
+    {% endfor %}
+  </select>
+    </div>
 
-        <!--here are the populated input fields for the user to edit the information-->
-        <div class="row">
-            <div class="input-field col s12">
-                <i class="material-icons prefix">local_dining</i>
-                <input id="recipe_name" name="recipe_name" type="text" class="validate" value="{{recipe.recipe_name}}">
-                <label for="icon_prefix">Recipe Name</label>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">flag</i>
-                <input id="cuisine" name="cuisine" type="text" class="validate" value="{{recipe.cuisine}}">
-                <label for="icon_prefix">Cuisine</label>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="author" name="author" type="text" class="validate" value="{{recipe.author}}">
-                <label for="icon_prefix">Author Name</label>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">restaurant</i>
-                <textarea name="ingredients" id="ingredients" class="materialize-textarea">{{recipe.ingredients}}</textarea>
-                <label for="icon_prefix">Ingredients</label>
-            </div>
-            <div class="input-field col s12">
-                <i class="material-icons prefix">build</i>
-                <textarea name="procedure" id="procedure" class="materialize-textarea">{{recipe.procedure}}</textarea>
-                <label for="icon_prefix">Procedure</label>
-            </div>
-        </div>
+    <!--here are the input fields for the user to edit the information-->
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="recipe_name" type="text" class="form-control" name="recipe_name" value="{{recipe.recipe_name}}" placeholder="Recipe Name">
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="cuisine" type="text" class="form-control" name="cuisine" value="{{recipe.cuisine}}" placeholder="Cuisine">
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="author" type="text" class="form-control" name="author" value="{{recipe.author}}" placeholder="Author">
+    </div>
+    <br>
+    <div class="form-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <textarea id="ingredients" type="text" rows="5" class="form-control" name="ingredients" placeholder="Ingredients">{{recipe.ingredients}}</textarea>
+    </div>
+    <br>
+    <div class="form-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <textarea id="procedure" type="text" rows="5" class="form-control" name="procedure" placeholder="Procedure">{{recipe.procedure}}</textarea>
+    </div>
+    <br>
+    <button type="submit" name="action" class="btn btn-success">Update Recipe</button>
+  </form>
 
-        <!--done editing recipe button and home button-->
-        <div class="row">
-            <button class="btn-floating btn-large waves-effect waves-light green" type="submit" name="action"><i class="material-icons right">check</i></button>
-            <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
-        </div>
-    </form>
 </div>
 
 {% endblock %}

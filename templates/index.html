@@ -1,3 +1,20 @@
 {% extends 'base.html' %} {% block content %}
-
+<h3>Recipes for everyone.</h3>
+<p>Welcome to "World of Recipes".  Select from a variety of cuisines and choose a dish to suit your mood.  We have recipes from all types of people from all over the world.</p>
+<br>
+<h3>Add your own recipe.</h3>
+<p>Become a member of "World of Recipes" and add your own recipes to our collection.  You can also edit other recipes if you spot a mistake.  Log in or sign up now!</p>
+<form class="col-md-5">
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="email" type="text" class="form-control" name="email" placeholder="Email">
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+  </div>
+  <br>
+  <button type="button" class="btn btn-success">Log in</button> or 
+  <button type="button" class="btn btn-info">Sign up</button>
+  </form>
 {% endblock %}
