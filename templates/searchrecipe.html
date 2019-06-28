@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
 <ul class="collapsible" data-collapsible="accordion">
-    {% for recipe_id in recipe_id %}
+    {% for recipe in recipe %}
     <li>
         <div class="collapsible-header">
             <div class="recipe_header">
@@ -38,14 +38,9 @@
         </div>
     </li>
 
-    {% endfor %}
+    <!--{% endfor %}-->
 
 </ul>
 
-<!--here are my add recipe and home buttons, they are linked to their relevant pages-->
-<div class="row">
-    <a href="{{url_for('add_recipe')}}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons right">add</i></a>
-    <a href="{{url_for('recipe_home')}}" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons right">home</i></a>
-</div>
 
 {% endblock %}

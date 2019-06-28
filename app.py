@@ -15,50 +15,10 @@ mongo = PyMongo(app)
 def recipe_index():
     return render_template("index.html", recipe=mongo.db.recipe.find())
 
-
-    
-@app.route('/find_recipe', methods=['POST', 'GET'])
-def find_recipe():
-    recipe_id = request.args.get('recipe_id')
-    if recipe_id=='vegetarian':
-          vegetarian=mongo.db.vegetarian.find()
-    if recipe_id=='meateaters':
-          meateaters=mongo.db.meateaters.find()
-    if recipe_id=='italian':
-          italian=mongo.db.italian.find()
-    if recipe_id=='irish':
-          irish=mongo.db.irish.find()
-    if recipe_id=='chinese':
-          chinese=mongo.db.chinese.find()
-    return render_template('searchrecipe.html', recipe_id=recipe_id)
-
-"""PUT THESE INTO ONE FIND RECIPE ABOVE
-@app.route('/recipe_meateater')
-def recipe_meateater():
-    return render_template("meateater.html", meateaters=mongo.db.meateaters.find())
-
-@app.route('/recipe_vegetarian')
-def recipe_vegetarian():
-    return render_template("vegetarian.html", vegetarian=mongo.db.vegetarian.find())
-    
-@app.route('/recipe_irish')
-def recipe_irish():
-    return render_template("irish.html", irish=mongo.db.irish.find())
-
-@app.route('/recipe_italian')
-def recipe_italian():
-    return render_template("italian.html", italian=mongo.db.italian.find())
-    
-@app.route('/recipe_chinese')
-def recipe_chinese():
-    return render_template("chinese.html", chinese=mongo.db.chinese.find())
-
-"""
-
-
 @app.route('/get_recipe')
 def get_recipe():
     return render_template("recipe.html", recipe=mongo.db.recipe.find())
+
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -70,6 +30,7 @@ def insert_recipe():
     recipe = mongo.db.recipe
     recipe.insert_one(request.form.to_dict())
     return redirect(url_for('get_recipe'))
+
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
@@ -92,6 +53,53 @@ def update_recipe(recipe_id):
         'image':request.form.get('image')
     })
     return redirect(url_for('get_recipe'))
+
+
+
+@app.route('/find_recipe', methods=['POST', 'GET'])
+def find_recipe():
+    searchitem = request.args.get('search')
+    mongo.db.recipe.create_index([('name', 'text')])
+    query = ( { "$text": { "$search": searchitem } } )
+    searchresult = mongo.db.recipe.find(query)
+    return render_template('recipe.html', query=query, searchitem=searchitem, searchresult=searchresult)
+ 
+ 
+"""testing search options
+@app.route('/find_recipe', methods=['POST', 'GET'])
+def find_recipe():
+    recipe = mongo.db.recipe
+    recipe_id = request.args.get('recipe_id')
+    if recipe_id=='vegetarian':
+          vegetarian=mongo.db.vegetarian.find()
+    if recipe_id=='meateaters':
+          meateaters=mongo.db.meateaters.find()
+    if recipe_id=='italian':
+          italian=mongo.db.italian.find()
+    if recipe_id=='irish':
+          irish=mongo.db.irish.find()
+    if recipe_id=='chinese':
+          chinese=mongo.db.chinese.find()
+    return render_template('searchrecipe.html', recipe_id=recipe_id)
+    
+    
+@app.route('/find_recipe/<recipe_id>', methods=["POST"])
+def find_recipe(recipe_id):
+    recipe = mongo.db.recipe
+    recipe_id = request.args.get('recipe_id')
+    recipe.search( {'_id': ObjectId(recipe_id)},
+    {
+        'recipe_name':request.form.get('recipe_name'),
+        'cuisine':request.form.get('cuisine'),
+        'author': request.form.get('author'),
+        'suitable_for': request.form.get('suitable_for'),
+        'ingredients':request.form.get('ingredients'),
+        'procedure':request.form.get('procedure'),
+        'image':request.form.get('image')
+    })
+    return render_template('searchrecipe.html', recipe_id=recipe_id)
+"""
+
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
