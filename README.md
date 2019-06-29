@@ -11,7 +11,7 @@ A typical user of this app would be looking for the following:
 4. Be able to add their own recipe to the app.  
 5. Search the app for a recipe according to their preferred selections.
 
-The mock-up I used for planning the application is a file in my project under the name recipesMockUp.jpeg
+The mock-up I used for planning the application are in my images folder under the names mockUpPage1.jpeg and mockUpPage2.jpeg
 
 In the top section I have a navigation bar with all selections available to the user and a relevant background image associated with recipes stretching down the page.  Underneath I give a brief introduction and a static "Sign in" form to display the possibility of adding extra security to the app. 
 
@@ -20,20 +20,19 @@ This layout is fully responsive on mobile, medium and large screens.
 
 ## Features
 ### Existing Features
-- All Recipes: Allows the user to browse all the recipes available on the app. When a recipe is selected, full details (author, ingredients, image and procedure) are revealed with an option to edit or delete the selected recipe. If the user decides to "Edit" the recipe, then the user is brought to a pre-filled form where they can edit the details of the recipe. This edited version will be updated in the app. Also, if the user decided to "Delete" the recipe, the recipe will be deleted from the app.
+- All Recipes: Allows the user to browse all the recipes available on the app. At the beginning of the list, there is an option to filter the recipes into vegetarian meaty or all recipes.  When a recipe is selected, full details (author, ingredients, image and procedure) are revealed with an option to edit or delete the selected recipe. If the user decides to "Edit" the recipe, then the user is brought to a pre-filled form where they can edit the details of the recipe. This edited version will be updated in the app. Also, if the user decided to "Delete" the recipe, the recipe will be deleted from the app.
 - Add Recipe: Allows the user to add their own recipe to the app by entering their details into a form and selecting the "Add Recipe" button. Next time they browse the recipes they will find their own recipe there also.
 - Search Recipes: Allows the user to search the recipe by entering text to an input box... When any of these extra options are selected, the user is brought to a page showing the recipes relevant to their selection.
 
 ### Features Left to Implement
-- a "recipes amount" counter.
 - a working sign in form to allow access to the app.
 
 ## Technologies Used
 Flask: a Python web framework for building this app.
-Materialize: Accordion effect on recipe descriptions;  collapsible headers
 Javascript: For interaction   
 Bootstrap (getbootstrap.com): For the layout and theme.
 MongoDB databases.
+HTML & CSS for template creation
 
 ## Testing
 As per my primary targets above:
@@ -59,3 +58,5 @@ Code institute tutorials.
 w3schools.com  
 Slack  
 stackoverflow.com
+Bootstrap docs
+Mongo docs

@@ -55,17 +55,17 @@ def update_recipe(recipe_id):
     return redirect(url_for('get_recipe'))
 
 
-
+"""search route for search bar and filter"""
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
-    searchitem = request.args.get('search')
+    search = request.args.get('search')
     mongo.db.recipe.create_index([('name', 'text')])
-    query = ( { "$text": { "$search": searchitem } } )
+    query = ( { "$text": { "$search": search } } )
     searchresult = mongo.db.recipe.find(query)
-    return render_template('recipe.html', query=query, searchitem=searchitem, searchresult=searchresult)
+    return render_template('recipe.html', query=query, search=search, searchresult=searchresult)
  
  
-"""testing search options
+"""testing more search options
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
     recipe = mongo.db.recipe
@@ -80,7 +80,7 @@ def find_recipe():
           irish=mongo.db.irish.find()
     if recipe_id=='chinese':
           chinese=mongo.db.chinese.find()
-    return render_template('searchrecipe.html', recipe_id=recipe_id)
+    return render_template('recipe.html', recipe_id=recipe_id)
     
     
 @app.route('/find_recipe/<recipe_id>', methods=["POST"])
@@ -97,7 +97,7 @@ def find_recipe(recipe_id):
         'procedure':request.form.get('procedure'),
         'image':request.form.get('image')
     })
-    return render_template('searchrecipe.html', recipe_id=recipe_id)
+    return render_template('recipe.html', recipe_id=recipe_id)
 """
 
 
