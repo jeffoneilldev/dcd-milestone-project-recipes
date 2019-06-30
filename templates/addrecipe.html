@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% block content %}
-
+<div align="center">
 <h2>Add Recipe</h2>
 <p>Enter your recipe details and click the "Submit Recipe" button when you're done.</p>
 <br>
 <!--a form for the user to enter their own recipe-->
 <div class="row">
-  <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-5">
+  <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-12">
     <!--the first row asks the user to select either vegetarian or meat eater-->
     <div class="form-group">
       <select class="form-control" id="searchrecipes" placeholder="Suitable for">
@@ -44,6 +44,7 @@
     <button type="submit" name="action" class="btn btn-success">Submit Recipe</button>
   </form>
 
+</div>
 </div>
 
 {% endblock %}

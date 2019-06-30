@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% block content %}
-
+<div align="center">
 <h2>Edit Recipe</h2>
 <p>Edit your recipe details and click the "Update Recipe" button when you're done.</p>
 <br>
 
 <!--a form for the user to edit the recipe-->
 <div class="row">
-  <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col-md-5">
+  <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col-md-12">
     <!--the first row is preselected vegetarian or meat eater-->
     <div class="form-group">
       <select class="form-control" id="searchrecipes" name="suitable_for" placeholder="Suitable for">
@@ -48,6 +48,7 @@
     <button type="submit" name="action" class="btn btn-success">Update Recipe</button>
   </form>
 
+</div>
 </div>
 
 {% endblock %}

@@ -55,15 +55,15 @@ def update_recipe(recipe_id):
     return redirect(url_for('get_recipe'))
 
 
-"""search route for search bar and filter"""
+"""search route for search bar and radio buttons filter"""
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
-    search = request.args.get('search')
+    search_recipes = request.args.get('search')
     mongo.db.recipe.create_index([('name', 'text')])
-    query = ( { "$text": { "$search": search } } )
+    query = ( { "$text": { "$search": "$search" } } )
     searchresult = mongo.db.recipe.find(query)
-    return render_template('recipe.html', query=query, search=search, searchresult=searchresult)
- 
+    return render_template('recipe.html', search_recipes=search_recipes, searchresult=searchresult)
+
  
 """testing more search options
 @app.route('/find_recipe', methods=['POST', 'GET'])
