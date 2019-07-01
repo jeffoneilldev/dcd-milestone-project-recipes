@@ -58,11 +58,12 @@ def update_recipe(recipe_id):
 """search route for search bar and radio buttons filter"""
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
-    search_recipes = request.args.get('search')
+    recipesearch = request.args.get('search')
     mongo.db.recipe.create_index([('name', 'text')])
-    query = ( { "$text": { "$search": "$search" } } )
+    query = ( { "$text": { "$search": recipesearch } } )
     searchresult = mongo.db.recipe.find(query)
-    return render_template('recipe.html', search_recipes=search_recipes, searchresult=searchresult)
+    return render_template('recipe.html', recipesearch=recipesearch, searchresult=searchresult)
+
 
  
 """testing more search options
@@ -83,7 +84,7 @@ def find_recipe():
     return render_template('recipe.html', recipe_id=recipe_id)
     
     
-@app.route('/find_recipe/<recipe_id>', methods=["POST"])
+@app.route('/find_recipe/<recipe_id>', method=["POST"])
 def find_recipe(recipe_id):
     recipe = mongo.db.recipe
     recipe_id = request.args.get('recipe_id')

@@ -6,13 +6,13 @@
 <div class="container" align="center">
   <form action="{{ url_for('find_recipe') }}" method="POST">
     <label class="radio-inline">
-      <input type="radio" name="vegetarian">&nbsp;Vegetarian&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="optradio" value="vegetarian">&nbsp;Vegetarian&nbsp;&nbsp;&nbsp;
     </label>
     <label class="radio-inline">
-      <input type="radio" name="meateaters">&nbsp;Meaty&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="optradio" value="meateaters">&nbsp;Meaty&nbsp;&nbsp;&nbsp;
     </label>
     <label class="radio-inline">
-      <input type="radio" name="recipe" checked>&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="radio" name="optradio" value="recipe" checked>&nbsp;All&nbsp;&nbsp;&nbsp;&nbsp;
     </label>
     <input type="submit" class="btn-sm btn-info" value="GO">
   </form>
