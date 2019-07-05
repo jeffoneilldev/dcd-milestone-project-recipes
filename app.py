@@ -55,23 +55,19 @@ def update_recipe(recipe_id):
     return redirect(url_for('get_recipe'))
 
 
-# test search bar and see the 3 actions in the terminal, I need to do something with the 3rd GET below
+# to get the search bar input and find the recipe
 @app.route('/find_recipe', methods=['GET', 'POST'])
 def find_recipe():
-
     searchitem = request.args.get('searchitem')
 
     if request.method == 'POST':
-        searchitem = request.form.to_dict()
-        recipe_name=mongo.db.recipe.recipe_name
-        cuisine = mongo.db.recipe.cuisine
-        author = mongo.db.recipe.author
-        suitable_for = mongo.db.recipe.suitable_for
-        mongo.db.recipe.create_index( { recipe_name: "text", cuisine: "text", author: "text", suitable_for: "text" } )
-        mongo.db.recipe.find( { "$text": { "$search": searchitem } } )
+        search_results = request.form.to_dict()
+        
+        if search_results:
+            mongo.db.recipe.createIndex( { "$**": "text" } )
+            mongo.db.recipe.find( { "$text": { "$search": searchitem } } )
 
     return render_template('recipe.html', searchitem=searchitem)
-
 
 # search bar
 @app.route('/searchbar_item', methods=['GET','POST'])
@@ -83,7 +79,7 @@ def searchbar_item():
 
 
 
-"""
+"""testing more search options
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
     searchitem = request.form.get('search')
@@ -146,7 +142,7 @@ def find_recipe():
 """
 
     
-"""testing more search options
+"""
 @app.route('/find_recipe', methods=['POST', 'GET'])
 def find_recipe():
     recipesearch = request.form['search']
