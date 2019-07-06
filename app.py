@@ -55,19 +55,19 @@ def update_recipe(recipe_id):
     return redirect(url_for('get_recipe'))
 
 
-# to get the search bar input and find the recipe
+# recieves the search bar input and the filter button selection and finds the recipe
 @app.route('/find_recipe', methods=['GET', 'POST'])
 def find_recipe():
     searchitem = request.args.get('searchitem')
-
+    print (searchitem)
     if request.method == 'POST':
-        search_results = request.form.to_dict()
+        search_results = request.form.to_dict('searchitem')
         
-        if search_results:
-            mongo.db.recipe.createIndex( { "$**": "text" } )
-            mongo.db.recipe.find( { "$text": { "$search": searchitem } } )
+    query = ( { "$text": { "$search": searchitem } } )
+    search_results = mongo.db.recipe.find(query)
 
-    return render_template('recipe.html', searchitem=searchitem)
+    return render_template('recipe.html', search_results=search_results, searchitem=searchitem)
+
 
 # search bar
 @app.route('/searchbar_item', methods=['GET','POST'])
@@ -78,98 +78,24 @@ def searchbar_item():
     return redirect(url_for('find_recipe', searchitem=searchitem))
 
 
+# filter button vegetarian
+@app.route('/radio_filter_veg', methods=['GET','POST'])
+def radio_filter_veg():
 
-"""testing more search options
-@app.route('/find_recipe', methods=['POST', 'GET'])
-def find_recipe():
-    searchitem = request.form.get('search')
-    print(searchitem)
-    recipe_name=mongo.db.recipe.recipe_name
-    cuisine = mongo.db.recipe.cuisine
-    author = mongo.db.recipe.author
-    suitable_for = mongo.db.recipe.suitable_for
-    
-    mongo.db.recipe.createIndex( { recipe_name: "text", cuisine: "text", author: "text", suitable_for: "text" } )
-
-    searchresult = mongo.db.recipe.find( { "$text": { "$search": searchitem } } )
-    
-    return render_template('recipe.html', searchresult=searchresult)
-"""
-"""
-mongo.db.recipe.insert(
-   [
-     { recipe_name: "Pasta Bake", cuisine: "Italian", author: "Paolo DiCanio", suitable_for: "Vegetarian" },
-     { recipe_name: "Spaghetti Bolognese", cuisine: "Italian", author: "Paolo DiCanio", suitable_for: "Meat eaters" },
-     { recipe_name: "Irish Stew", cuisine: "Irish", author: "Kitty O'Grady", suitable_for: "Meat eaters" },
-     { recipe_name: "Jacket Potatoes", cuisine: "Irish", author: "Kitty O'Grady", suitable_for: "Vegetarian" },
-     { recipe_name: "Chow Mein", cuisine: "Chinese", author: "Kim Sang", suitable_for: "Vegetarian" },
-     { recipe_name: "Chicken Curry", cuisine: "Chinese", author: "Kim Sang", suitable_for: "Meat eaters" }
-   ]
-)
-"""
-"""
-recipe = mongo.db.recipe
-    recipe_name = mongo.db.recipe.recipe_name
-    cuisine = mongo.db.recipe.cuisine
-    author = mongo.db.recipe.author
-    suitable_for = mongo.db.recipe.suitable_for
-"""
+    # get search item and redirect to find_recipe route
+    searchitem = request.form['vegetarian']
+    return redirect(url_for('find_recipe', searchitem=searchitem))
 
 
-"""search route for search bar and radio buttons filter
-@app.route('/find_recipe', methods=['POST', 'GET'])
-def find_recipe():
-   recipe_id=request.args.get('search')
-   
-   searchresult =  mongo.db.recipe.find_one({"search": ObjectId()})
+# filter button meateaters
+@app.route('/radio_filter_meat', methods=['GET','POST'])
+def radio_filter_meat():
 
-   print(recipe_id)
-   return render_template('recipe.html', searchresult=searchresult)
-"""
+    # get search item and redirect to find_recipe route
+    searchitem = request.form['meateaters']
+    return redirect(url_for('find_recipe', searchitem=searchitem))
 
 
-"""
-@app.route('/find_recipe', methods=['POST', 'GET'])
-def find_recipe():
-    recipesearch = request.form.to_dict('search')
-    recipe = mongo.db.recipe
-    
-    searchresult = list(recipe.find_one())
-    for result in searchresult:
-        
-        print(recipesearch)
-    return render_template('recipe.html', result=result)
-"""
-
-    
-"""
-@app.route('/find_recipe', methods=['POST', 'GET'])
-def find_recipe():
-    recipesearch = request.form['search']
-    mongo.db.recipe.create_index([('name', 'text')])
-    query = ( { "$search": { "$search": recipesearch } } )
-    searchresult = mongo.db.recipe.find(query)
-    print(recipesearch)
-    return render_template('recipe.html', recipesearch=recipesearch, searchresult=searchresult)
-
-
-
-@app.route('/find_recipe/<recipe_id>', method=["POST"])
-def find_recipe(recipe_id):
-    recipe = mongo.db.recipe
-    recipe_id = request.args.get('recipe_id')   -took this from above example
-    recipe.search( {'_id': ObjectId(recipe_id)},
-    {
-        'recipe_name':request.form.get('recipe_name'),
-        'cuisine':request.form.get('cuisine'),
-        'author': request.form.get('author'),
-        'suitable_for': request.form.get('suitable_for'),
-        'ingredients':request.form.get('ingredients'),
-        'procedure':request.form.get('procedure'),
-        'image':request.form.get('image')
-    })
-    return render_template('recipe.html', recipe_id=recipe_id)
-"""
 
 
 @app.route('/delete_recipe/<recipe_id>')
