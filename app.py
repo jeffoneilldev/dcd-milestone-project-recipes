@@ -15,10 +15,11 @@ mongo = PyMongo(app)
 def recipe_index():
     return render_template("index.html", recipe=mongo.db.recipe.find())
 
+"""
 @app.route('/get_recipe')
 def get_recipe():
     return render_template("recipe.html", recipe=mongo.db.recipe.find())
-
+"""
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -29,7 +30,7 @@ def add_recipe():
 def insert_recipe():
     recipe = mongo.db.recipe
     recipe.insert_one(request.form.to_dict())
-    return redirect(url_for('get_recipe'))
+    return redirect(url_for('find_recipe'))
 
 
 @app.route('/edit_recipe/<recipe_id>')
@@ -52,56 +53,33 @@ def update_recipe(recipe_id):
         'procedure':request.form.get('procedure'),
         'image':request.form.get('image')
     })
-    return redirect(url_for('get_recipe'))
+    return redirect(url_for('find_recipe'))
 
 
 # recieves the search bar input and the filter button selection and finds the recipe
 @app.route('/find_recipe', methods=['GET', 'POST'])
 def find_recipe():
     searchitem = request.args.get('searchitem')
-    print (searchitem)
-    if request.method == 'POST':
-        search_results = request.form.to_dict('searchitem')
+#    print (request.method)
+#    if request.form['search']:
+    if searchitem==searchitem:    
+#    if request.method == 'GET':
+        searchitem = request.form.to_dict()
         
-    query = ( { "$text": { "$search": searchitem } } )
-    search_results = mongo.db.recipe.find(query)
-
-    return render_template('recipe.html', search_results=search_results, searchitem=searchitem)
-
-
-# search bar
-@app.route('/searchbar_item', methods=['GET','POST'])
-def searchbar_item():
-
-    # get search item and redirect to find_recipe route
-    searchitem = request.form['search']
-    return redirect(url_for('find_recipe', searchitem=searchitem))
-
-
-# filter button vegetarian
-@app.route('/radio_filter_veg', methods=['GET','POST'])
-def radio_filter_veg():
-
-    # get search item and redirect to find_recipe route
-    searchitem = request.form['vegetarian']
-    return redirect(url_for('find_recipe', searchitem=searchitem))
-
-
-# filter button meateaters
-@app.route('/radio_filter_meat', methods=['GET','POST'])
-def radio_filter_meat():
-
-    # get search item and redirect to find_recipe route
-    searchitem = request.form['meateaters']
-    return redirect(url_for('find_recipe', searchitem=searchitem))
-
+        query = ( { "$text": { "$search": searchitem } } )
+        search_results = mongo.db.recipe.find(searchitem)
+#    import pdb;pdb.set_trace()
+        print (searchitem)
+        return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
+    else:
+        return render_template("recipe.html", recipe=mongo.db.recipe.find())
 
 
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     mongo.db.recipe.remove({'_id': ObjectId(recipe_id)})
-    return redirect(url_for('get_recipe'))
+    return redirect(url_for('find_recipe'))
 
 
 if __name__ == '__main__':
