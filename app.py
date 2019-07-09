@@ -64,9 +64,11 @@ def find_recipe():
 #    if request.form['search']:
     if searchitem==searchitem:    
 #    if request.method == 'GET':
-        searchitem = request.form.to_dict()
         
+        searchitem = request.form.to_dict()
+    
         query = ( { "$text": { "$search": searchitem } } )
+#        search_results = mongo.db.recipe.find( { "name": { "$regex": "searchitem" } } )
         search_results = mongo.db.recipe.find(searchitem)
 #    import pdb;pdb.set_trace()
         print (searchitem)

@@ -25,19 +25,19 @@
 
       <!-- Recipe info -->
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-7">
           <a href="#">
             <img class="img-fluid rounded mb-3 mb-md-0" src="{{recipe.image}}" alt="image of prepared dish" width="75%" height="auto">
-          </a>
+          </a><br><br>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-5">
           <p>{{recipe.cuisine}} <strong>{{recipe.suitable_for}}</strong> dish prepared by {{recipe.author}}</p>
           <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#more{{recipe._id}}">View Recipe</button>
               <br><br>
               <div id="more{{recipe._id}}" class="collapse">
                 <h6>Ingredients</h6>
                 {{recipe.ingredients}}
-                  <hr>
+                  <br><br><hr>
                 <h6>Procedure</h6>
                 {{recipe.procedure}}
                 <br><br>
