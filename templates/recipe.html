@@ -12,57 +12,35 @@
 </div>
 <br>
 
-<ul class="list-group">
-    {% for recipe in recipe %}
+
 <!-- Page Content -->
-<li class="list-group-item">
-    <div class="container" align="center">
 
-      <!-- Recipe Heading -->
-      <h2 class="my-4">{{recipe.recipe_name}}
-        <small></small>
-      </h2>
-
-      <!-- Recipe info -->
+    <div class="container">
       <div class="row">
-        <div class="col-md-7">
-          <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="{{recipe.image}}" alt="image of prepared dish" width="75%" height="auto">
-          </a><br><br>
-        </div>
-        <div class="col-md-5">
-          <p>{{recipe.cuisine}} <strong>{{recipe.suitable_for}}</strong> dish prepared by {{recipe.author}}</p>
-          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#more{{recipe._id}}">View Recipe</button>
-              <br><br>
-              <div id="more{{recipe._id}}" class="collapse">
-                <h6>Ingredients</h6>
-                {{recipe.ingredients}}
-                  <br><br><hr>
-                <h6>Procedure</h6>
-                {{recipe.procedure}}
-                <br><br>
-                
-<!--put Edit and Delete options here-->  
-    <a class="btn btn-warning" href="{{url_for('edit_recipe', recipe_id=recipe._id)}}">Edit</a>
-    <a class="btn btn-danger" href="{{url_for('delete_recipe', recipe_id=recipe._id)}}">Delete</a><br><br>
-
-                <hr>
-        </div>
-        </div>
-        </div>
+        {% for rec in recipe %}
+          
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="card h-100" align="center">
+              <a href="#"><img class="card-img-top" src="{{rec.image}}" alt="image of prepared dish"></a>
+                <div class="card-body">
+                  <h4 class="card-title">{{rec.recipe_name}}</h4>
+                    <p>{{rec.cuisine}} <strong>{{rec.suitable_for}}</strong> dish prepared by {{rec.author}}</p>
+                    
+                    <form action="{{ url_for('find_recipe') }}" method="POST">
+                      <div class="input-group">
+                        <input type="submit" id="recipebutton" name="recipe_name" class="btn-sm btn-info" value="{{rec.recipe_name}}">
+                      </div>
+                    </form>
+                    
+                </div>
+            </div>
+          </div>
+          
+        {% endfor %}
       </div>
-      <!-- /.row -->
+    </div>
 
-     
-
-</li>
-
-         {% endfor %} 
-         
-</ul>
-
-
-      <hr>
+  <hr>
 
 <!-- Pagination setup but not wired up-->
 <ul class="pagination justify-content-center">
@@ -88,12 +66,5 @@
           </a>
   </li>
 </ul>
-
-   
-    <!-- /.container -->
-
-
-
-
 
 {% endblock %}

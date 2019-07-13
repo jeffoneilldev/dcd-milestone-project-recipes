@@ -15,11 +15,6 @@ mongo = PyMongo(app)
 def recipe_index():
     return render_template("index.html", recipe=mongo.db.recipe.find())
 
-"""
-@app.route('/get_recipe')
-def get_recipe():
-    return render_template("recipe.html", recipe=mongo.db.recipe.find())
-"""
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -59,20 +54,18 @@ def update_recipe(recipe_id):
 # recieves the search bar input and the filter button selection and finds the recipe
 @app.route('/find_recipe', methods=['GET', 'POST'])
 def find_recipe():
-    searchitem = request.args.get('searchitem')
-#    print (request.method)
-#    if request.form['search']:
-    if searchitem==searchitem:    
-#    if request.method == 'GET':
-        
+    searchitem = request.form.get('recipe_name') or request.form.get('suitable_for')
+
+    if searchitem:    
         searchitem = request.form.to_dict()
     
         query = ( { "$text": { "$search": searchitem } } )
-#        search_results = mongo.db.recipe.find( { "name": { "$regex": "searchitem" } } )
+#wordsearch?        search_results = mongo.db.recipe.find( { "name": { "$regex": "searchitem" } } )
+#pagination?        search_results = mongo.db.recipe.find(searchitem).skip(3).limit(3)
         search_results = mongo.db.recipe.find(searchitem)
-#    import pdb;pdb.set_trace()
-        print (searchitem)
-        return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
+#debugger    import pdb;pdb.set_trace()
+        return render_template('showrecipe.html', recipe=search_results, searchitem=searchitem)
+
     else:
         return render_template("recipe.html", recipe=mongo.db.recipe.find())
 
