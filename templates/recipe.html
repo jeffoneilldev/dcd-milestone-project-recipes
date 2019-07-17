@@ -1,14 +1,27 @@
 {% extends 'base.html' %} {% block content %}
+
 <h1 align="center">Recipes</h1>
-<p align="center">Click "View Recipe" to see the ingredients and procedure.</p>
+<p align="center">Click the recipe button to see ingredients and procedure.</p>
 
 <!--radio buttons for user to filter recipes-->
 <div class="container" align="center">
-  <form action="{{ url_for('find_recipe') }}" method="POST">
+  <form action="{{ url_for('find_recipe') }}" method="POST"> 
     <label class="checkbox-inline"><input type="checkbox" name="suitable_for" value="Vegetarian">&nbsp;Vegetarian&nbsp;&nbsp;&nbsp;</label>
     <label class="checkbox-inline"><input type="checkbox" name="suitable_for" value="Meat eaters">&nbsp;Meaty&nbsp;&nbsp;&nbsp;</label>
-    <input type="submit" class="btn-sm btn-info" value="Filter Search">
+    <input type="submit" name="suitable_for" class="btn-sm btn-info" value="Filter Search">
   </form>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<br>
+<ul class="alert alert-info" role="alert" style="list-style-type:none">
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 </div>
 <br>
 
@@ -17,16 +30,17 @@
 
     <div class="container">
       <div class="row">
+        
         {% for rec in recipe %}
-          
+        
           <div class="col-lg-4 col-sm-6 mb-4">
-            <div class="card h-100" align="center">
+            <div class="card h-100">
               <a href="#"><img class="card-img-top" src="{{rec.image}}" alt="image of prepared dish"></a>
                 <div class="card-body">
                   <h4 class="card-title">{{rec.recipe_name}}</h4>
                     <p>{{rec.cuisine}} <strong>{{rec.suitable_for}}</strong> dish prepared by {{rec.author}}</p>
                     
-                    <form action="{{ url_for('find_recipe') }}" method="POST">
+                    <form action="{{ url_for('show_recipe') }}" method="POST">
                       <div class="input-group">
                         <input type="submit" id="recipebutton" name="recipe_name" class="btn-sm btn-info" value="{{rec.recipe_name}}">
                       </div>
@@ -37,8 +51,10 @@
           </div>
           
         {% endfor %}
-      </div>
-    </div>
+        
+      </div><br><br>
+      <a class="btn btn-info" href="{{url_for('find_recipe')}}">All Recipes</a>
+    </div><br>
 
   <hr>
 
@@ -68,3 +84,4 @@
 </ul>
 
 {% endblock %}
+
