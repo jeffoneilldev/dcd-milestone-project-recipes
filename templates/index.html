@@ -1,22 +1,31 @@
 {% extends 'base.html' %} {% block content %}
 <div align="center">
-<h3>Recipes for everyone.</h3>
-<p>Welcome to "World of Recipes".  Select from a variety of cuisines and choose a dish to suit your mood.  We have recipes from all types of people from all over the world.</p>
+<h2>Recipes for everyone.</h2>
+<p>Welcome to "World of Recipes".  We have recipes from a variety of cuisines to suit your mood.  People from all over the world are adding new recipes every day!</p>
+
+  <br>
+<h4>Find your favourite recipe.</h4>
+<p>Log in to your "World of Recipes" account and add your own recipes to our collection.  You can also edit other recipes if you spot a mistake.</p>
+
+          <form action="{{ url_for('find_recipe') }}" method="POST" class="navbar-brand col-md-3">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Search Our Recipes...
+              </button>
+              
+              <div class="dropdown-menu dropdown-menu-right">
+                {% for rec in recipe %}
+                <button class="dropdown-item" type="submit" name="recipe_name" value="{{rec.recipe_name}}">{{rec.recipe_name}}</button>
+                {% endfor %}
+              </div>
+            </div>
+            
+          </form>
+          
+
 <br>
-<h3>Add your own recipe.</h3>
-<p>Become a member of "World of Recipes" and add your own recipes to our collection.  You can also edit other recipes if you spot a mistake.  <strong>Log in or sign up now!</strong></p>
-<form class="col-md-5">
-  <div class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-    <input id="email" type="text" class="form-control" name="email" placeholder="Email">
-  </div><br>
-  <div class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-    <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+
   </div>
   <br>
-  <button type="button" class="btn btn-success">Log in</button> &nbsp;&nbsp;or &nbsp;&nbsp;
-  <button type="button" class="btn btn-info">Sign up</button>
-  </form>
-  </div>
+  <br>
 {% endblock %}

@@ -56,8 +56,8 @@ def update_recipe(recipe_id):
 # recieves the search bar input and the filter button selection and finds the recipe
 @app.route('/find_recipe', methods=['GET', 'POST'])
 def find_recipe():
-    searchitem = request.form.get('recipe_name') or request.form.get('suitable_for')
-
+    searchitem = request.form.get('recipe_name') or request.form.get('suitable_for') or request.form.get('cuisine')
+    print(searchitem)
     if searchitem:    
         flash("Here are the results of your search...")
         searchitem = request.form.to_dict()
