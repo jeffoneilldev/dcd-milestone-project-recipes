@@ -2,28 +2,15 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/clean-blog.min.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
+  <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static', filename='css/clean-blog.min.css')}}" type="text/css" />
+  <link rel="stylesheet" href="{{url_for('static', filename='mycss/style.css')}}" type="text/css" />
 </head>
 
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<!--to display a nav bar with a user login and links to "Home", "Recipes" and "Add Recipes" pages-->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      
-      <form class="form-inline">
-        <div class="form-group mb-2">
-          <label for="staticEmail2" class="sr-only">Email</label>
-          <input type="text" class="form-control" id="staticEmail2" value="email@example.com">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="inputPassword2" class="sr-only">Password</label>
-          <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-        </div>
-        <button type="submit" class="btn-sm btn-info mb-2">Log in</button>
-      </form>
-          
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -45,7 +32,7 @@
     </div>
   </nav>
 
-  <!-- Page Header -->
+  <!--to display the background image and page heading-->
   <header class="masthead" style="background-image: url('https://www.theloop.ca/wp-content/uploads/2016/09/ingredients.jpg')">
     <div class="overlay"></div>
     <div class="container">
@@ -60,10 +47,9 @@
     </div>
   </header>
 
-  <!-- Main Content -->
+  <!--main content of each page will display here-->
   <div class="container">
-    {% block content %}
-    {% endblock %}
+    {% block content %} {% endblock %}
   </div>
 
   <hr>
@@ -73,8 +59,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          
-          <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+
+          <p class="copyright text-muted">&copy; World of Recipes 2019</p>
         </div>
       </div>
     </div>
@@ -86,9 +72,9 @@
 
   <!-- Custom scripts for this template -->
   <script src="{{url_for('static', filename='js/clean-blog.min.js')}}"></script>
-  
-  
-  
+
+
+
 </body>
 
 </html>

@@ -1,54 +1,78 @@
 {% extends 'base.html' %} {% block content %}
 <div align="center">
-<h2>Edit Recipe</h2>
-<p>Edit your recipe details and click the "Update Recipe" button when you're done.</p>
-<br>
+  <h2>Edit Recipe</h2>
+  <p>Edit your recipe details and click the "Update Recipe" button when you're done.</p>
+  <br>
 
-<!--a form for the user to edit the recipe-->
-<div class="row">
-  <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col-md-12">
-    <!--the first row is preselected vegetarian or meat eater-->
-    <div class="form-group">
-      <select class="form-control" id="searchrecipes" name="suitable_for" placeholder="Suitable for">
-    <option value="" disabled >Vegatarian or Meaty?</option>
-    {% for search in search_recipes %}
-    {% if search.suitable_for == recipe.suitable_for %}
-    <option value="{{search.suitable_for}}" selected>{{search.suitable_for}}</option>
-    {% else %}
-    <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
-    {% endif %}
-    {% endfor %}
-  </select>
-    </div>
+  <!--a form to edit the recipe-->
+  <div class="row">
+    <form action="{{ url_for('update_recipe', recipe_id=recipe._id) }}" method="POST" class="col-md-12">
 
-    <!--here are the input fields for the user to edit the information-->
-    <div class="input-group">
-      <input id="recipe_name" type="text" class="form-control" name="recipe_name" value="{{recipe.recipe_name}}" placeholder="Recipe Name">
-    </div>
-    <br>
-    <div class="input-group">
-      <input id="cuisine" type="text" class="form-control" name="cuisine" value="{{recipe.cuisine}}" placeholder="Cuisine">
-    </div>
-    <br>
-    <div class="input-group">
-      <input id="author" type="text" class="form-control" name="author" value="{{recipe.author}}" placeholder="Author">
-    </div>
-    <br>
-    <div class="form-group">
-      <textarea id="ingredients" type="text" rows="5" class="form-control" name="ingredients" placeholder="Ingredients">{{recipe.ingredients}}</textarea>
-    </div>
-    <br>
-    <div class="form-group">
-      <textarea id="procedure" type="text" rows="5" class="form-control" name="procedure" placeholder="Procedure">{{recipe.procedure}}</textarea>
-    </div>
-    <br>
-    <input id="image" type="text" class="form-control" name="image" value="{{recipe.image}}" placeholder="Image URL">
-    </div>
-    <br>
-    <button type="submit" name="action" class="btn btn-success">Update Recipe</button>
-  </form>
+      <!--input fields for the user to edit the information-->
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Recipe Name</span>
+        </div>
+        <input id="recipe_name" type="text" class="form-control" name="recipe_name" value="{{recipe.recipe_name}}" required>
+      </div>
+      <br>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Cuisine</span>
+        </div>
+        <input id="cuisine" type="text" class="form-control" name="cuisine" value="{{recipe.cuisine}}" placeholder="eg Chinese, Italian etc" required>
+      </div>
+      <br>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Author</span>
+        </div>
+        <input id="author" type="text" class="form-control" name="author" value="{{recipe.author}}" required>
+      </div>
+      <br>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Image URL</span>
+        </div>
+        <input id="image" type="text" class="form-control" name="image" value="{{recipe.image}}" placeholder="eg  /static/images/pb.jpg  etc">
+      </div>
+      <br>
+      <!--this row is preselected vegetarian or meat eater-->
+      <div class="form-group">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="searchrecipes">Vegetarian or Meaty?</label>
+        </div>
+        <select class="form-control" id="searchrecipes" name="suitable_for" required>
+              <option value="" disabled >Please select</option>
+                {% for search in search_recipes %}
+                {% if search.suitable_for == recipe.suitable_for %}
+                  <option value="{{search.suitable_for}}" selected>{{search.suitable_for}}</option>
+                {% else %}
+              <option value="{{search.suitable_for}}">{{search.suitable_for}}</option>
+              {% endif %}
+              {% endfor %}
+            </select>
+      </div>
 
-</div>
+      <div class="form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Ingredients</span>
+        </div>
+        <textarea id="ingredients" type="text" rows="5" class="form-control" name="ingredients" placeholder="Enter recipe ingredients here" required>{{recipe.ingredients}}</textarea>
+      </div>
+      <br>
+      <div class="form-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Procedure</span>
+        </div>
+        <textarea id="procedure" type="text" rows="5" class="form-control" name="procedure" placeholder="Enter recipe procedure here" required>{{recipe.procedure}}</textarea>
+      </div>
+      <br>
+
+      <button type="submit" name="action" class="btn btn-success">Update Recipe</button>
+    </form>
+
+  </div>
 </div>
 
 {% endblock %}

@@ -1,5 +1,4 @@
 import os
-import re
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
@@ -12,19 +11,21 @@ app.config["MONGO_URI"] = 'mongodb+srv://root:r00tUser@myfirstcluster-xc4tx.mong
 mongo = PyMongo(app)
 
 @app.route('/')
-
-@app.route('/recipe_index')
 def recipe_index():
+    """to bring the user to the home page"""
     return render_template("index.html", recipe=mongo.db.recipe.find())
 
 
 @app.route('/add_recipe')
 def add_recipe():
+    """to bring the user to the add recipe page"""
     return render_template("addrecipe.html",
     search_recipes=mongo.db.search_recipes.find())
-    
+
+   
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
+    """to insert a recipe into the db & bring the user back to the recipes page"""
     recipe = mongo.db.recipe
     recipe.insert_one(request.form.to_dict())
     return redirect(url_for('find_recipe'))
@@ -32,13 +33,17 @@ def insert_recipe():
 
 @app.route('/edit_recipe/<recipe_id>')
 def edit_recipe(recipe_id):
+    """to bring the user to the edit recipe page and 
+    display the selected recipe form already populated and have it ready for editing"""
     the_recipe =  mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     all_searches =  mongo.db.search_recipes.find()
     return render_template('editrecipe.html', recipe = the_recipe,
                            search_recipes = all_searches)
 
+
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
+    """to update changes made to the edited recipe and return the user to the recipes page"""
     recipe = mongo.db.recipe
     recipe.update( {'_id': ObjectId(recipe_id)},
     {
@@ -53,20 +58,16 @@ def update_recipe(recipe_id):
     return redirect(url_for('find_recipe'))
 
 
-# recieves the search bar input and the filter button selection and finds the recipe
 @app.route('/find_recipe', methods=['GET', 'POST'])
 def find_recipe():
+    """to take the input from searches, filters and recipes button and display the result on the recipes page"""
     searchitem = request.form.get('recipe_name') or request.form.get('suitable_for') or request.form.get('cuisine')
     print(searchitem)
     if searchitem:    
         flash("Here are the results of your search...")
         searchitem = request.form.to_dict()
-    
         query = ( { "$text": { "$search": searchitem } } )
-#wordsearch?        search_results = mongo.db.recipe.find( { "name": { "$regex": 'searchitem' } } )
-#pagination?        search_results = mongo.db.recipe.find(searchitem).skip(3).limit(3)
         search_results = mongo.db.recipe.find(searchitem)
-#debugger    import pdb;pdb.set_trace()
         return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
 
     else:
@@ -75,6 +76,7 @@ def find_recipe():
 
 @app.route('/show_recipe', methods=['GET', 'POST'])
 def show_recipe():
+    """to display the selected recipe on a new page with all of the recipe information"""
     searchitem = request.form.get('recipe_name') or request.form.get('suitable_for')
     if searchitem:    
         searchitem = request.form.to_dict()
@@ -83,11 +85,9 @@ def show_recipe():
         return render_template('showrecipe.html', recipe=search_results, searchitem=searchitem)
 
 
-
-
-
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
+    """to remove the selected recipe from the list/db"""
     mongo.db.recipe.remove({'_id': ObjectId(recipe_id)})
     return redirect(url_for('find_recipe'))
 
