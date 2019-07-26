@@ -15,28 +15,28 @@
         </div>
         <input id="recipe_name" type="text" class="form-control" name="recipe_name" value="{{recipe.recipe_name}}" required>
       </div>
-      <br>
+      <br><br>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">Cuisine</span>
         </div>
         <input id="cuisine" type="text" class="form-control" name="cuisine" value="{{recipe.cuisine}}" placeholder="eg Chinese, Italian etc" required>
       </div>
-      <br>
+      <br><br>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">Author</span>
         </div>
         <input id="author" type="text" class="form-control" name="author" value="{{recipe.author}}" required>
       </div>
-      <br>
+      <br><br>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text">Image URL</span>
         </div>
-        <input id="image" type="text" class="form-control" name="image" value="{{recipe.image}}" placeholder="eg  /static/images/pb.jpg  etc">
+        <input id="image" type="text" class="form-control" name="image" value="{{recipe.image}}" placeholder="eg  https://website.com/recipeimage.jpg">
       </div>
-      <br>
+      <br><br>
       <!--this row is preselected vegetarian or meat eater-->
       <div class="form-group">
         <div class="input-group-prepend">
@@ -53,7 +53,7 @@
               {% endfor %}
             </select>
       </div>
-
+       <br>
       <div class="form-group">
         <div class="input-group-prepend">
           <span class="input-group-text">Ingredients</span>

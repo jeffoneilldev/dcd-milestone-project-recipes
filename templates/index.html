@@ -2,32 +2,25 @@
 <div align="center">
   <h2>Welcome to "World of Recipes"</h2>
   <p>We have recipes from a variety of cuisines to suit your taste. People from all over the world are adding new recipes every day.</p>
-  <br><hr><br>
+  <br><hr><br><br>
   <h4>Enter your username for full access to the app.</h4>
   <p>Log in to your account to add your own recipes to our collection. You can also edit or delete recipes if you spot a mistake.</p>
-  <div class="row col-lg-4 col-sm-6">
-    <form class="form-inline">
-      <div class="form-group mx-sm-3 mb-2">
-        <label for="username1" class="sr-only">Username</label>
-        <input type="text" class="form-control" id="username1" placeholder="Username">
+  <div class="row col-lg-6 col-sm-6">
+    
+    <form action="{{ url_for('find_recipe') }}" method="POST" class="col-md-12">
+      <!--input fields for the user to enter their information-->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Enter username:</span>
+        </div>
+        <input type="text" class="form-control" aria-label="username" required>
+        <div class="input-group-append">
+          <button class="input-group-text"><strong>LOG IN</strong></button>
+        </div>
       </div>
-      <button type="submit" class="btn-sm btn-info mb-2">Enter</button>
     </form>
   </div>
-  <br><br>
-  <hr><br>
-  <h4>For casual browsers</h4>
-  <p>Why not browse our recipes to see how it works...</p>
-  <!--a search button for the user to quickly find any recipe that is currently in our app-->
-  <form action="{{ url_for('find_recipe') }}" method="POST" class="navbar-brand col-md-3">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quick Search</button>
-      <div class="dropdown-menu dropdown-menu-right">
-        {% for rec in recipe %}
-        <button class="dropdown-item" type="submit" name="recipe_name" value="{{rec.recipe_name}}">{{rec.recipe_name}}</button> {% endfor %}
-      </div>
-    </div>
-  </form>
+  <br>
   <br>
 </div>
 <br>

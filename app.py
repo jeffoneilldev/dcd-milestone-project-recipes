@@ -1,4 +1,5 @@
 import os
+import re
 from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
@@ -62,7 +63,6 @@ def update_recipe(recipe_id):
 def find_recipe():
     """to take the input from searches, filters and recipes button and display the result on the recipes page"""
     searchitem = request.form.get('recipe_name') or request.form.get('suitable_for') or request.form.get('cuisine')
-    print(searchitem)
     if searchitem:    
         flash("Here are the results of your search...")
         searchitem = request.form.to_dict()
@@ -83,6 +83,15 @@ def show_recipe():
         query = ( { "$text": { "$search": searchitem } } )
         search_results = mongo.db.recipe.find(searchitem)
         return render_template('showrecipe.html', recipe=search_results, searchitem=searchitem)
+
+
+@app.route('/search_recipe', methods=['GET', 'POST'])
+def search_recipe():
+    """to display the recipe on a new page from text inputs entered into the search bar"""
+    searchitem = request.form.get('recipe_name')
+    search_results = mongo.db.recipe.find( { "recipe_name": { "$regex": searchitem, "$options": "i" }} )
+    return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
+
 
 
 @app.route('/delete_recipe/<recipe_id>')

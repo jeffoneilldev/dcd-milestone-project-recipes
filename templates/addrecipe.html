@@ -3,6 +3,7 @@
   <h2>Add Recipe</h2>
   <p>Enter your recipe details and click the "Submit Recipe" button when you're done.</p>
   <br>
+  
   <!--a form for the user to enter their own recipe-->
   <div class="row">
     <form action="{{ url_for('insert_recipe') }}" method="POST" class="col-md-12">
@@ -33,7 +34,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Image URL</span>
         </div>
-        <input id="image" type="text" class="form-control" name="image" placeholder="eg  /static/images/pb.jpg  etc">
+        <input id="image" type="text" class="form-control" name="image" value="/static/images/noimage.jpg" placeholder="eg  https://website.com/recipeimage.jpg">
       </div>
       <br><br>
       <!--this row asks the user to select either vegetarian or meat eater-->

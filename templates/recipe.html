@@ -34,7 +34,7 @@
 
     {% for rec in recipe %}
 
-    <div class="col-lg-4 col-sm-6 mb-4">
+    <div class="col-lg-4 col-sm-8 mb-4 mx-auto">
       <div class="card h-100">
         <img class="card-img-top" src="{{rec.image}}" alt="image of prepared dish">
         <div class="card-body">
@@ -52,7 +52,7 @@
     {% endfor %}
 
   </div><br><br>
-  <a class="btn btn-info" href="{{url_for('find_recipe')}}">All Recipes</a>
+  <a class="btn btn-outline-info" href="{{url_for('find_recipe')}}">All Recipes</a>
 </div><br>
 
 <hr> {% endblock %}
