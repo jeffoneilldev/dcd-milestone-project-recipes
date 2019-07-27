@@ -69,7 +69,6 @@ def find_recipe():
         query = ( { "$text": { "$search": searchitem } } )
         search_results = mongo.db.recipe.find(searchitem)
         return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
-
     else:
         return render_template("recipe.html", recipe=mongo.db.recipe.find())
 
@@ -89,10 +88,11 @@ def show_recipe():
 def search_recipe():
     """to display the recipe on a new page from text inputs entered into the search bar"""
     searchitem = request.form.get('recipe_name')
-    search_results = mongo.db.recipe.find( { "recipe_name": { "$regex": searchitem, "$options": "i" }} )
-    return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
-
-
+    if searchitem:    
+        flash("Here are the results of your search...")
+        search_results = mongo.db.recipe.find( { "recipe_name": { "$regex": searchitem, "$options": "i" }} )
+        return render_template('recipe.html', recipe=search_results, searchitem=searchitem)
+    
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
@@ -104,4 +104,4 @@ def delete_recipe(recipe_id):
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
             port=int(os.environ.get('PORT')),
-            debug=True)
+            debug=False)

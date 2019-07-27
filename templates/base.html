@@ -45,7 +45,7 @@
           <!--search bar-->
           <form action="{{ url_for('search_recipe') }}" method="POST" class="navbar-brand col-md-5">
             <div class="input-group">
-              <input type="text" name="recipe_name" class="form-control" placeholder="Search Recipes">
+              <input type="text" name="recipe_name" class="form-control" placeholder="Search Recipes" required>
                 <input type="submit" class="btn-sm btn-info" value="GO!">
             </div>
           </form>
