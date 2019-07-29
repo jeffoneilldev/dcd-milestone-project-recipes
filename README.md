@@ -80,6 +80,14 @@ I took the following steps to deploy my project using **Heroku**:
 
 Here is the live link to my "recipes" heroku app,  **https://recipes-jeffoneill.herokuapp.com/**
 
+To clone my Github repository to another local repository...
+- Go to my repository in Github and click on the "clone or download" button.
+- Copy the URL in the "Clone with HTTPs" section.
+- Go to the IDE you are using and open your terminal.
+- Change your current working directory to the location where you want to put the cloned directory.
+- in your terminal, type **git clone** followed by the URL you copied from the "Clone with HTTPs" section above and press **Enter**.
+- Your local repository will then be created.
+
 ## Credits
 ### Content
 Bootstrap "Clean Blog" Theme
